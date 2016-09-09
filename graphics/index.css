@@ -1,0 +1,52 @@
+.upper {
+	background-color:  rgba(0, 0, 0, 0.72);
+	height: 9vw;
+}
+
+#tflive {
+	color: white;
+	display: inline-block;
+	font-size: 2em;
+	padding-top: 3%;
+	padding-left: 3%
+}
+
+.team {
+	display: inline;
+	height: auto;
+}
+
+#red {
+	color: #b13c42;
+}
+
+#blu {
+	color: #5b7586;
+}
+
+#vs {
+	color:white;
+	padding-left: 1.5%;
+	padding-right: 1.5%;
+}
+
+#red, #blu, #vs {
+	display: inline-block;
+	text-align: center;
+	font-size: 3em;
+	padding-top: 2%;
+}
+
+#title {
+	display: inline;
+	padding-left: 15%
+}
+
+#maps {
+	background-color:  rgba(0, 0, 0, 0.72);
+	color: white;
+	width: auto;
+	display: inline-block;
+	padding-left: 1%;
+	padding-right: 1%
+}

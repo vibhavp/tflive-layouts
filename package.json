@@ -1,0 +1,53 @@
+{
+  "name": "tflive",
+  "version": "0.0.0",
+  "description": "tflive description",
+  "homepage": "",
+  "author": {
+    "name": "Vibhav Pant",
+    "email": "vibhavp@gmail.com",
+    "url": ""
+  },
+  "dependencies": {
+    "twitter": "^1.4.0"
+  },
+  "files": [
+    "dashboard",
+    "graphics",
+    "extension.js",
+    "extension"
+  ],
+  "keywords": [
+    "tflive",
+    "tf2",
+    "nodecg-bundle"
+  ],
+  "nodecg": {
+    "compatibleRange": "~0.8.0",
+    "dashboardPanels": [
+      {
+        "name": "casters",
+        "title": "Casters",
+        "width": 2,
+        "file": "casters.html",
+        "headerColor": "#9f9bbd"
+      },
+      {
+        "name": "match",
+        "title": "Match",
+        "width": 2,
+        "file": "match.html",
+        "headerColor": "#9f9bbd"
+      }
+    ],
+    "graphics": [
+      {
+        "file": "index.html",
+        "width": 1280,
+        "height": 720
+      }
+    ]
+  },
+  "repository": "https://github.com/nodecg/nodecg.git",
+  "license": "MIT"
+}

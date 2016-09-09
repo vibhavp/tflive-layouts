@@ -1,0 +1,7 @@
+{
+	"name": "tflive-layout",
+	"dependencies": {
+		"nodecg-replicant": "NodeCGElements/nodecg-replicant",
+		"nodecg-replicant-input": "NodeCGElements/nodecg-replicant-input"
+	}
+}
