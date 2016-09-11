@@ -2,14 +2,28 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+	<link rel="import" href="components/paper-input/paper-input.html">
 	<link rel="import" href="components/nodecg-replicant-input/nodecg-replicant-input.html">
+	<link rel="import" href="components/iron-flex-layout/classes/iron-flex-layout.html">
+	<link rel="import" href="components/nodecg-toast/nodecg-toast.html">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 </head>
+
 <body>
-	<nodecg-replicant-input label="Caster 1" replicant-name="caster1"></nodecg-replicant-input>
-	<nodecg-replicant-input label="Caster 1 Twitter" replicant-name="caster1_twitter"></nodecg-replicant-input>
-	<nodecg-replicant-input label="Caster 2" replicant-name="caster2"></nodecg-replicant-input>
-	<nodecg-replicant-input label="Caster 2 Twitter" replicant-name="caster2_twitter"></nodecg-replicant-input>
-	<nodecg-replicant-input label="Observer" replicant-name="observer1"></nodecg-replicant-input>
-	<nodecg-replicant-input label="Observer Twitter" replicant-name="observer1_twitter"></nodecg-replicant-input>
+	<div class="layout horizontal">
+		<paper-input id="caster1"label="Caster 1"></paper-input>
+		<paper-input id="caster1Twitter" label="Caster 1 Twitter"></paper-input>
+	</div>
+	<div class="layout horizontal">
+		<paper-input id="caster2" label="Caster 2"></paper-input>
+		<paper-input id="caster2Twitter" label="Caster 2 Twitter"></paper-input>
+	</div>
+	<div class="layout horizontal">
+		<paper-input id="observer" label="Observer"></paper-input>
+		<paper-input id="observerTwitter" label="Observer Twitter"></paper-input>
+	</div>
+
+	<nodecg-toast id="toast" text="abcd"></nodecg-toast>
+	<script src="casters.js"></script>
 </body>
 </html>

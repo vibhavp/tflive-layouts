@@ -1,19 +1,12 @@
 .upper {
 	background-color:  rgba(0, 0, 0, 0.72);
-	height: 9vw;
 }
 
 #tflive {
 	color: white;
 	display: inline-block;
 	font-size: 2em;
-	padding-top: 3%;
-	padding-left: 3%
-}
-
-.team {
-	display: inline;
-	height: auto;
+	padding-left: 2%
 }
 
 #red {
@@ -25,21 +18,21 @@
 }
 
 #vs {
-	color:white;
-	padding-left: 1.5%;
-	padding-right: 1.5%;
-}
-
-#red, #blu, #vs {
-	display: inline-block;
-	text-align: center;
-	font-size: 3em;
-	padding-top: 2%;
+	color: white;
+	padding-left: 0.5%;
+	padding-right: 0.5%;
 }
 
 #title {
 	display: inline;
-	padding-left: 15%
+	padding-left: 2%
+}
+
+#red, #blu, #vs {
+	display: inline-block;
+	font-size: 3em;
+	padding-top: 2%;
+	padding-bottom: 2%;
 }
 
 #maps {
@@ -48,5 +41,43 @@
 	width: auto;
 	display: inline-block;
 	padding-left: 1%;
-	padding-right: 1%
+	padding-right: 1%;
+	padding-top: 0.2%;
+	padding-bottom: 0.2%;
+}
+
+@font-face {
+    font-family: bebasNue;
+    src: url('bebasneue.otf') format("opentype");
+}
+
+#lowerHeadings {
+	background-color: rgba(0, 0, 0, 0.72);
+	display: inline-block;
+	position: absolute;
+	bottom: 20%;
+	left: 0%;
+	color: white;
+}
+
+#casters {
+	padding-left: 2%;
+}
+
+
+#lower {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	width: 100%;
+	height: 20%;
+	position: absolute;
+	bottom: 0%;
+	background-color: rgba(0, 0, 0, 0.72);
+	color: white;
+}
+
+.profile {
+	padding: 2%;
+	display: flex;
 }
