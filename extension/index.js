@@ -22,8 +22,23 @@ module.exports = function (nodecg) {
 	function addRole(id) {
 		const rep = new nodecg.Replicant(id, 'tflive', {defaultValue: {name: 'TBD', twitter: ''}});
 		const repInfo = new nodecg.Replicant(id + 'Info', 'tflive', {defaultValue: {name: 'TBD', twitter: ''}});
+
 		rep.on('change', data => {
-			repInfo.value = {twitterImg: null, name: data.name, twitter: data.twitter};
+			console.log(data);
+			if (client) {
+				client.get('users/show', {screen_name: id}, (error, profile) => {
+					if (error) {
+						nodecg.log.error(error);
+						repInfo.value = {twitterImg: null, name: data.name, twitter: data.twitter};
+					}
+
+					repInfo.value = {twitterImg: profile.profile_image_url_https, name: data.name, twitter: data.twitter};
+
+				});
+			} else {
+				console.log('setting value');
+				repInfo.value = {twitterImg: null, name: data.name, twitter: data.twitter};
+			}
 		});
 	}
 
