@@ -1,12 +1,24 @@
 .upper {
+	font-family: 'Roboto', sans-serif;
+	font-weight: 900;
+
 	background-color:  rgba(0, 0, 0, 0.72);
+	box-shadow: 5px 4px 5px #888888;
+
+	display: flex;
+	flex-direction: column;  /* make main axis vertical */
+	justify-content: center; /* center items vertically, in this case */
+	width: 100%;
+	height: 149px;
 }
 
-#tflive {
-	color: white;
-	display: inline-block;
-	font-size: 2em;
-	padding-left: 2%
+.title {
+	padding-left: 1%;
+	padding-right: 30%;
+	display: flex;
+	flex-direction: row;
+	align-items: baseline;
+	justify-content: space-between;
 }
 
 #red {
@@ -18,19 +30,13 @@
 }
 
 #vs {
+	padding-left: 62px;
+	padding-right: 62px;
 	color: white;
-	padding-left: 0.5%;
-	padding-right: 0.5%;
-}
-
-#title {
-	display: inline;
-	padding-left: 2%
 }
 
 #red, #blu, #vs {
-	display: inline-block;
-	font-size: 3em;
+	font-size: 60px;
 	padding-top: 2%;
 	padding-bottom: 2%;
 }
@@ -46,38 +52,32 @@
 	padding-bottom: 0.2%;
 }
 
-@font-face {
-    font-family: bebasNue;
-    src: url('bebasneue.otf') format("opentype");
-}
-
-#lowerHeadings {
-	background-color: rgba(0, 0, 0, 0.72);
-	display: inline-block;
-	position: absolute;
-	bottom: 20%;
-	left: 0%;
-	color: white;
-}
-
-#casters {
-	padding-left: 2%;
-}
-
-
 #lower {
 	display: flex;
 	flex-direction: row;
-	justify-content: space-around;
+	justify-content: space-between;
 	width: 100%;
 	height: 20%;
 	position: absolute;
 	bottom: 0%;
 	background-color: rgba(0, 0, 0, 0.72);
 	color: white;
+	font-size: 25px;
 }
 
 .profile {
 	padding: 2%;
 	display: flex;
+	flex-direction: row;
+}
+
+.profileBox > #name {
+	font-family: 'Roboto', sans-serif;
+	font-weight: 900;
+}
+
+.profileBox {
+	padding: 10%;
+	display: flex;
+	flex-direction: column;
 }

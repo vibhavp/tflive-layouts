@@ -5,5 +5,8 @@
     "nodecg-replicant-input": "NodeCGElements/nodecg-replicant-input",
     "iron-flex-layout": "PolymerElements/iron-flex-layout#^1.3.1",
     "nodecg-toast": "NodeCGElements/nodecg-toast#^0.1.2"
+  },
+  "devDependencies": {
+    "jquery": "^3.1.0"
   }
 }

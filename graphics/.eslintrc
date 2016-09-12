@@ -1,0 +1,16 @@
+{
+	"env": {
+		"browser": true,
+		"jquery": true
+	},
+	"globals": {
+		"nodecg": true,
+		"Polymer": true,
+	},
+	"rules": {
+		 "space-in-parens": 0,
+		 "computed-property-spacing": 0,
+		 "quotes": [2, "single"],
+		 "camelcase": 0,
+	}
+}

@@ -9,6 +9,7 @@
     "url": ""
   },
   "dependencies": {
+    "babel-eslint": "^6.1.2",
     "twitter": "^1.4.0"
   },
   "files": [
@@ -51,9 +52,11 @@
   "repository": "https://github.com/nodecg/nodecg.git",
   "license": "MIT",
   "devDependencies": {
-    "babel-eslint": "^6.1.2",
     "eslint": "^3.5.0",
-    "eslint-config-xo": "^0.15.4",
-    "eslint-plugin-babel": "^3.3.0"
+    "xo": "^0.16.0"
+  },
+  "scripts": {
+    "lint": "eslint --cache src/**/*.js",
+    "test": "xo"
   }
 }
