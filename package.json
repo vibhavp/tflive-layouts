@@ -9,7 +9,6 @@
     "url": ""
   },
   "dependencies": {
-    "babel-eslint": "^6.1.2",
     "twitter": "^1.4.0"
   },
   "files": [
@@ -53,7 +52,9 @@
   "license": "MIT",
   "devDependencies": {
     "eslint": "^3.5.0",
-    "xo": "^0.16.0"
+    "twitter": "^1.4.0",
+    "xo": "^0.16.0",
+    "babel-eslint": "^6.1.2"
   },
   "scripts": {
     "lint": "eslint --cache src/**/*.js",

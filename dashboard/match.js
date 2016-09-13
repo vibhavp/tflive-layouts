@@ -4,11 +4,6 @@
 	const node = document.getElementById('mapno');
 	// var nodecg = new NodeCG('tflive');
 	const maps = new window.nodecg.Replicant('maps', 'tflive', {defaultValue: []});
-	function createChange(i, input) {
-		return function () {
-			maps.value[i] = input[0].value;
-		};
-	}
 
 	$(node).on('change', () => {
 		const num = parseInt(node.value, 10);
@@ -22,15 +17,14 @@
 
 		const div = document.getElementById('maps');
 		const length = $(div).children().length;
-		let i;
 
 		if (num < length) {
-			for (i = length; i > num; i--) {
+			for (let i = length; i > num; i--) {
 				$('#map' + (i - 1)).detach();
 				maps.value.pop();
 			}
 		} else {
-			for (i = length; i < num; i++) {
+			for (let i = length; i < num; i++) {
 				const mapItem = $('<div class="map" id="map' + i + '"></div>');
 				const mapName = $('<paper-input></paper-input>');
 
@@ -41,10 +35,19 @@
 				$(team2Score).attr('label', 'Team 2 Score');
 
 				$(mapName).attr('label', 'Map ' + (i + 1));
-				$(mapName).on('change', createChange(i, mapName));
+
+				const onChange = () => {
+					maps.value[i] = {map: mapName[0].value, team1Score: team1Score[0].value, team2Score: team2Score[0].value};
+				};
+
+				$(mapName).on('change', onChange);
+				$(team1Score).on('change', onChange);
+				$(team2Score).on('change', onChange);
 
 				if (mapList !== undefined) {
-					mapName[0].value = mapList[i];
+					mapName[0].value = mapList[i].map;
+					team1Score[0].value = mapList[i].team1Score;
+					team2Score[0].value = mapList[i].team2Score;
 				}
 
 				$(mapItem).append(mapName, team1Score, team2Score);
@@ -55,7 +58,7 @@
 
 	window.nodecg.readReplicant('maps', 'tflive', maps => {
 		if ( maps !== undefined ) {
-			node.value = ' ' + maps.length;
+			node.value = String(maps.length);
 			setMapInput(maps.length, maps);
 		}
 	});
