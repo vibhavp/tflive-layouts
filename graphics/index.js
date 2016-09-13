@@ -10,7 +10,7 @@
 		for (i in maps) {
 			if ({}.hasOwnProperty.call(maps, i)) {
 				str += maps[i];
-				if (i !== maps.length - 1) {
+				if (i != maps.length - 1) {
 					str += ' · ';
 				}
 			}
@@ -62,7 +62,7 @@
 				return;
 			}
 
-			$($('#' + id).children()[0]).attr('src', data.twitter_img);
+			$($('#' + id).children()[0]).attr('src', data.twitterImg);
 			// $('#' + id).children()
 
 			[1].innerHTML = '<b>' + data.name + '</b><br>@<i>' + data.twitter + '</i>';

@@ -10,10 +10,10 @@ module.exports = function (nodecg) {
 		nodecg.log.error('no twitter config found. Twitter disabled');
 	} else {
 		client = new Twitter({
-			consumerKey: nodecg.bundleConfig.twitter.consumer_key,
-			consumerSecret: nodecg.bundleConfig.twitter.consumer_secret,
-			accessTokenKey: nodecg.bundleConfig.twitter.access_token_key,
-			accessTokenSecret: nodecg.bundleConfig.twitter.access_token_secret
+			consumer_key: nodecg.bundleConfig.twitter.consumer_key,
+			consumer_secret: nodecg.bundleConfig.twitter.consumer_secret,
+			access_token_key: nodecg.bundleConfig.twitter.access_token_key,
+			access_token_secret: nodecg.bundleConfig.twitter.access_token_secret
 		});
 	}
 
@@ -22,8 +22,27 @@ module.exports = function (nodecg) {
 	function addRole(id) {
 		const rep = new nodecg.Replicant(id, 'tflive', {defaultValue: {name: 'TBD', twitter: ''}});
 		const repInfo = new nodecg.Replicant(id + 'Info', 'tflive', {defaultValue: {name: 'TBD', twitter: ''}});
+
+		function setValue(image, data) {
+			if (image && image.replace) {
+				image = image.replace('_normal', '');
+			}
+			repInfo.value = {twitterImg: image, name: data.name, twitter: data.twitter};
+		}
+
 		rep.on('change', data => {
-			repInfo.value = {twitterImg: null, name: data.name, twitter: data.twitter};
+			if (client) {
+				client.get('users/show', {screen_name: data.twitter}, (error, profile) => {
+					if (error) {
+						nodecg.log.error(error);
+						setValue(null, data);
+					}
+
+					setValue(profile.profile_image_url_https, data);
+				});
+			} else {
+				setValue(null, data);
+			}
 		});
 	}
 
