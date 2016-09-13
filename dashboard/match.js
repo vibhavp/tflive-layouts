@@ -26,22 +26,29 @@
 
 		if (num < length) {
 			for (i = length; i > num; i--) {
-				$($(div).children()[i - 1]).detach();
+				$('#map' + (i - 1)).detach();
 				maps.value.pop();
 			}
 		} else {
 			for (i = length; i < num; i++) {
-				const input = $('<paper-input></paper-input>');
-				$(input).attr('label', 'Map ' + (i + 1));
-				$(input).attr('id', 'map' + (i));
+				const mapItem = $('<div class="map" id="map' + i + '"></div>');
+				const mapName = $('<paper-input></paper-input>');
 
-				$(input).on('change', createChange(i, input));
+				const team1Score = mapName.clone();
+				$(team1Score).attr('type', 'number');
+				$(team1Score).attr('label', 'Team 1 Score');
+				const team2Score = team1Score.clone();
+				$(team2Score).attr('label', 'Team 2 Score');
+
+				$(mapName).attr('label', 'Map ' + (i + 1));
+				$(mapName).on('change', createChange(i, mapName));
 
 				if (mapList !== undefined) {
-					input[0].value = mapList[i];
+					mapName[0].value = mapList[i];
 				}
 
-				$(div).append(input);
+				$(mapItem).append(mapName, team1Score, team2Score);
+				$(div).append(mapItem);
 			}
 		}
 	}

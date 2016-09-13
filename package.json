@@ -36,7 +36,7 @@
       {
         "name": "match",
         "title": "Match",
-        "width": 2,
+        "width": 4,
         "file": "match.html",
         "headerColor": "#9f9bbd"
       }

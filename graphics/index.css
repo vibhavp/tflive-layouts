@@ -1,4 +1,4 @@
-.upper {
+.preGame #upper  {
 	font-family: 'Roboto', sans-serif;
 	font-weight: 900;
 
@@ -12,7 +12,7 @@
 	height: 149px;
 }
 
-.title {
+.preGame #title {
 	padding-left: 1%;
 	padding-right: 30%;
 	display: flex;
@@ -52,7 +52,7 @@
 	padding-bottom: 0.2%;
 }
 
-#lower {
+.preGame #lower {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
@@ -71,7 +71,7 @@
 	flex-direction: row;
 }
 
-.profileBox > #name {
+.profileBox #name {
 	font-family: 'Roboto', sans-serif;
 	font-weight: 900;
 }
