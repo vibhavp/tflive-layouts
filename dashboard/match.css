@@ -1,0 +1,18 @@
+.maps {
+	display: flex;
+	flex-direction: column;
+	padding: 1px;
+	margin: 5px;
+}
+
+.map {
+	display: flex;
+	flex-direction: row;
+	align-items: space-around;
+	justify-content: space-around;
+}
+
+.mapScore {
+	display: flex;
+	flex-direction: row;
+}

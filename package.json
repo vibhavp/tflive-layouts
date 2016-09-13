@@ -9,6 +9,7 @@
     "url": ""
   },
   "dependencies": {
+    "lastfm-listener": "^1.0.4",
     "twitter": "^1.4.0"
   },
   "files": [
@@ -37,6 +38,13 @@
         "title": "Match",
         "width": 4,
         "file": "match.html",
+        "headerColor": "#9f9bbd"
+      },
+      {
+        "name": "music",
+        "title": "Music",
+        "width": 3,
+        "file": "music.html",
         "headerColor": "#9f9bbd"
       }
     ],
