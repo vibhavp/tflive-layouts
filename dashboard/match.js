@@ -29,6 +29,7 @@
 				const mapName = $('<paper-input></paper-input>');
 
 				const team1Score = mapName.clone();
+				$(team1Score).attr('style', 'padding-left: 5%');
 				$(team1Score).attr('type', 'number');
 				$(team1Score).attr('label', 'Team 1 Score');
 				const team2Score = team1Score.clone();
