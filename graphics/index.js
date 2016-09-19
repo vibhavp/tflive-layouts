@@ -13,7 +13,7 @@
 			if ({}.hasOwnProperty.call(maps, i)) {
 				str += maps[i].map;
 				if (i != maps.length - 1) {
-					str += ' · ';
+					str += ' Â· ';
 				}
 			}
 		}
@@ -70,22 +70,18 @@
 	team2.on('change', changeTeam('blu'));
 	setMaps();
 
-	function setProfiles(id, role) {
-		nodecg.Replicant(id + 'Info', 'tflive').on('change', data => {
-			if (data === null || data === undefined || data === {}) {
-				return;
+	const roles = new window.nodecg.Replicant("roles", "tflive");
+
+	roles.on("change", (values) => {
+		for (let role in values) {
+			let node = $("#"+role);
+			let profile = values[role];
+
+			if (!profile.name) {
+				node.hide();
+			} else {
+				node.show();
 			}
-
-			$($('#' + id).children()[0]).attr('src', data.twitterImg);
-			// $('#' + id).children()
-
-			[1].innerHTML = '<b>' + data.name + '</b><br>@<i>' + data.twitter + '</i>';
-			$('#name', '#' + id)[0].innerHTML = '<b>' + data.name + '</b>';
-			$('#twitter', '#' + id)[0].innerHTML = '<i>@' + data.twitter + '</i>';
-		});
-	}
-
-	setProfiles('caster1', 'Caster');
-	setProfiles('caster2', 'Caster');
-	setProfiles('observer', 'Observer');
+		}
+	});
 })();

@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "lastfm-listener": "^1.0.4",
-    "twitter": "^1.4.0"
+    "twitter": "^1.4.0",
+    "typescript": "^1.8.10"
   },
   "files": [
     "dashboard",

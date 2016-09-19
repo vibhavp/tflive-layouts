@@ -1,29 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<link rel="import" href="components/paper-input/paper-input.html">
-	<link rel="import" href="components/nodecg-replicant-input/nodecg-replicant-input.html">
-	<link rel="import" href="components/iron-flex-layout/classes/iron-flex-layout.html">
-	<link rel="import" href="components/nodecg-toast/nodecg-toast.html">
-	<script src="components/jquery/dist/jquery.min.js"></script>
-</head>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="import" href="components/paper-input/paper-input.html">
+		<link rel="import" href="components/nodecg-replicant-input/nodecg-replicant-input.html">
+		<link rel="import" href="components/iron-flex-layout/classes/iron-flex-layout.html">
+		<link rel="import" href="components/nodecg-toast/nodecg-toast.html">
+		<script src="components/jquery/dist/jquery.min.js"></script>
+		<style type="text/css" media="screen">
+			.twitter {
+			    padding-left: 5%;
+			}
+		</style>
+	</head>
 
-<body>
-	<div class="layout horizontal">
-		<paper-input id="caster1"label="Caster 1"></paper-input>
-		<paper-input id="caster1Twitter" label="Caster 1 Twitter"></paper-input>
-	</div>
-	<div class="layout horizontal">
-		<paper-input id="caster2" label="Caster 2"></paper-input>
-		<paper-input id="caster2Twitter" label="Caster 2 Twitter"></paper-input>
-	</div>
-	<div class="layout horizontal">
-		<paper-input id="observer" label="Observer"></paper-input>
-		<paper-input id="observerTwitter" label="Observer Twitter"></paper-input>
-	</div>
-
-	<nodecg-toast id="toast" text="abcd"></nodecg-toast>
-	<script src="casters.js"></script>
-</body>
+	<body>
+		<div class="layout horizontal">
+			<paper-input class="role" label="Caster 1" id="caster1"></paper-input>
+			<paper-input class="twitter" label="Caster 1" id="caster1_twitter"></paper-input>
+		</div>
+		<div class="layout horizontal">
+			<paper-input class="role" label="Caster 2" id="caster2"></paper-input>
+			<paper-input class="twitter" label="Caster 2 Twitter" id="caster2_twitter"></paper-input>
+		</div>
+		<div class="layout horizontal">
+			<paper-input class="role" label="Anaylst 1" id="analyst1"></paper-input>
+			<paper-input class="twitter" label="Caster 3 Twitter" id="analyst1_twitter"></paper-input>
+		</div>
+		<div class="layout horizontal">
+			<paper-input class="role" label="Anaylst 2" id="analyst2"></paper-input>
+			<paper-input class="twitter" label="Analyst 2 Twitter" id="analyst2_twitter"></paper-input>
+		</div>
+		<div class="layout horizontal">
+			<paper-input class="role" label="Camera" id="camera"></paper-input>
+			<paper-input class="twitter" label="Camera Twitter" id="camera_twitter"></paper-input>
+		</div>
+		<div class="layout horizontal">
+			<paper-input class="role" label="Production" id="production"></paper-input>
+			<paper-input class="twitter" label="Production Twitter" id="production_twitter"></paper-input>
+		</div>
+		<script src="casters.js"></script>
+	</body>
 </html>

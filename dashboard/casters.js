@@ -1,34 +1,27 @@
 (function() {
 	'use strict';
 
-	const toast = document.getElementById("toast");
+	const inputs = document.getElementsByClassName("role");
+	const nodecg = window.nodecg;
 
-	function setProfileReplicant(role) {
-		const name = document.getElementById(role);
-		const nameTwitter = document.getElementById(role+'Twitter');
-		const rep = new window.nodecg.Replicant(role, 'tflive', {defaultValue: {name: "TBD", twitter: ""}});
+	for (let i in inputs) {
+		const id = inputs[i].id;
+		const name_input = document.getElementById(id);
+		if (!name_input) {
+			continue;
+		}
+		const twitter_input = document.getElementById(id+"_twitter");
 
-		$(name).on('change', () => {
-			rep.value['name'] = name.value;
-		});
+		const callback = () => {
+			console.log(name_input.value +" => "+twitter_input.value);
+			nodecg.sendMessage("rolesChange", {
+				role: id,
+				name: name_input.value,
+				twitter_id: twitter_input.value
+			});
+		};
 
-		$(nameTwitter).attr('allowed-pattern', '[A-Za-z0-9_]');
-		$(nameTwitter).attr('style', 'padding-left: 5%');
-		$(nameTwitter).attr('maxlength', 15);
-
-		$(nameTwitter).on('change', () => {
-			rep.value['twitter'] = nameTwitter.value;
-		});
-
-		window.nodecg.readReplicant(role, 'tflive', profile => {
-			if (profile !== undefined && profile !== null) {
-				name.value = profile['name'];
-				nameTwitter.value = profile['twitter'];
-			}
-		});
+		name_input.addEventListener("change", callback);
+		twitter_input.addEventListener("change", callback);
 	}
-
-	setProfileReplicant('caster1');
-	setProfileReplicant('caster2');
-	setProfileReplicant('observer');
 })();
