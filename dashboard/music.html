@@ -5,9 +5,11 @@
 		<link rel="import" href="components/nodecg-replicant-input/nodecg-replicant-input.html">
 		<link rel="import" href="components/paper-input/paper-input.html">
 		<link rel="import" href="components/paper-button/paper-button.html">
+		<link rel="import" href="components/paper-toggle-button/paper-toggle-button.html">
 	</head>
 	<body>
-		<nodecg-replicant-input label="Now Playing" replicant-name="nowPlaying"></nodecg-replicant-input>
-		<paper-button style="width:100%; background-color: #DEDEDE;">Sync with last.fm</paper-button>
+		<nodecg-replicant-input label="Now Playing" replicant-name="now_playing"></nodecg-replicant-input>
+		<paper-toggle-button id="lastfm">Use LastFM</paper-toggle-button>
+		<script src="music.js"></script>
 	</body>
 </html>

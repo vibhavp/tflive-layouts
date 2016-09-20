@@ -14,6 +14,7 @@ body {
 	flex-direction: row;
 	justify-content: center;
 	align-content: space-between;
+	align-items: baseline;
 	padding-top: 46px;
 	padding-bottom: 46px;
 
@@ -21,6 +22,16 @@ body {
 	font-weight: 900;
 	font-size: 52px;
 	color: white;
+}
+
+#now-playing {
+	position: relative;
+	left: 200px;
+
+	padding-left: 20px;
+	color: white;
+	font-size: 22px;
+	font-weight: 400;
 }
 
 #vs {
@@ -32,7 +43,7 @@ body {
 #maps {
 	font-family: 'Roboto', sans-serif;
 	font-size: 20px;
-	font-weight: 900;
+	font-weight: 500;
 	color: white;
 
 	position: relative;
@@ -65,7 +76,7 @@ body {
 	flex-direction: row;
 
 	font-family: 'Roboto', sans-serif;
-	font-weight: 900;
+	font-weight: 500;
 	font-size: 25px;
 	color: white;
 }
@@ -77,6 +88,12 @@ body {
 	padding-top: 27px;
 	padding-bottom: 20px;
 	padding-left: 25px;
+}
+
+.twitter {
+	height:122px;
+	width:122px;
+	display: none;
 }
 
 .caster-border {
@@ -95,6 +112,7 @@ body {
 
 .active {
 	position: relative;
+	display: none; /*hide the active music by default*/
 	height: 15px;
 	bottom: 115px;
 	left: 42px;

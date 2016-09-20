@@ -44,7 +44,7 @@
 			} else {
 				const curMap = maps[cur_map_index++];
 
-				mapsDiv.innerText = 'Map #' + (cur_map_index + 1) + ': ' + curMap.map + ' ' + curMap.team1Score + '-' + curMap.team2Score + ' ' + winner(curMap);
+				mapsDiv.innerText = 'Map #' + (cur_map_index) + ': ' + curMap.map + ' ' + curMap.team1Score + '-' + curMap.team2Score + ' ' + winner(curMap);
 				if (cur_map_index === maps.length) {
 					show_all_maps = true;
 					cur_map_index = 0;
@@ -80,8 +80,29 @@
 			if (!profile.name) {
 				node.hide();
 			} else {
+				$("#name", node).text(profile.name);
+
+				if (profile.twitter_id){
+					$("#twitter", node).text("@"+profile.twitter_id);
+
+					$(".twitter", node).attr("src", profile.twitter_img);
+					$(".twitter", node).show();
+				} else {
+					$(".twitter", node).hide();
+				}
+
 				node.show();
 			}
 		}
 	});
+
+	const change_song = (song) => {
+		console.log(song);
+		if (song){
+			console.log($("#now-playing").html("&#9836; <i>"+song+"</i"));
+		}
+	};
+	const now_playing = new nodecg.Replicant("now_playing", "tflive");
+	now_playing.on("change", change_song);
+	nodecg.readReplicant("now_playing", "tflive", change_song);
 })();
