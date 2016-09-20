@@ -1,3 +1,5 @@
 node_modules
 coverage
 bower_components
+extension/music.js
+extension/roles.js
