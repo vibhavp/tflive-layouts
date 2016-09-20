@@ -67,6 +67,6 @@
   },
   "scripts": {
     "lint": "eslint --cache src/**/*.js",
-    "test": "xo"
+    "build": "tsc"
   }
 }
