@@ -24,14 +24,24 @@ body {
 	color: white;
 }
 
-#now-playing {
-	position: relative;
-	left: 200px;
+#tflive-logo {
+	position: absolute;
+	left: 0px;
+	bottom: 82%;
+}
 
+#now-playing {
+	display: inline-block;
+	position: relative;
+	top: 20px;
+	left: 720px;
+	
+	font-family: 'Roboto', sans-serif;
+	font-weight: 500;
+	background-color:  rgba(0, 0, 0, 0.72);
 	padding-left: 20px;
 	color: white;
 	font-size: 22px;
-	font-weight: 400;
 }
 
 #vs {
@@ -67,17 +77,18 @@ body {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-around;
-	padding-top: 20px;
-	padding-bottom: 20px;
+	padding-top: 25px;
 }
 
 .profile {
 	display: flex;
 	flex-direction: row;
 
+	position: relative;
+	top: 13px;
 	font-family: 'Roboto', sans-serif;
 	font-weight: 500;
-	font-size: 25px;
+	font-size: 15.2px;
 	color: white;
 }
 
@@ -85,14 +96,13 @@ body {
 	display: flex;
 	flex-direction: column;
 
-	padding-top: 27px;
-	padding-bottom: 20px;
-	padding-left: 25px;
+	padding-top: 20px;
+	padding-left: 11px;
 }
 
 .twitter {
-	height:122px;
-	width:122px;
+	height: 80px;
+	width: 80px;
 	display: none;
 }
 
@@ -105,7 +115,7 @@ body {
 .role-icon {
 	position: relative;
 	left: 5px;
-	bottom: 80px;
+	bottom: 50px;
 	height: 35px;
 	width: 35px;
 }

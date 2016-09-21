@@ -55,6 +55,15 @@
         "width": 1280,
         "height": 720
       }
+    ],
+    "assetCategories": [
+      {
+        "name": "maps",
+        "title": "Maps",
+        "allowedTypes": [
+          "png", "webm"
+        ]
+      }
     ]
   },
   "repository": "https://github.com/nodecg/nodecg.git",
