@@ -13,7 +13,7 @@
 			if ({}.hasOwnProperty.call(maps, i)) {
 				str += maps[i].map;
 				if (i != maps.length - 1) {
-					str += ' Â· ';
+					str += ' · ';
 				}
 			}
 		}
@@ -98,7 +98,7 @@
 
 	const change_song = (song) => {
 		console.log(song);
-		if (song){
+		if (song) {
 			console.log($("#now-playing").html("&#9836; <i>"+song+"</i"));
 		}
 	};
