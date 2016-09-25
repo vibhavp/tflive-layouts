@@ -27,6 +27,9 @@
 			for (let i = length; i < num; i++) {
 				const mapItem = $('<div class="map" id="map' + i + '"></div>');
 				const mapName = $('<paper-input></paper-input>');
+				const current = $('<paper-checkbox>Current</paper-checkbox>');
+				$(current).attr('style', 'padding-left: 2px;');
+				$(current).attr('id', i);
 
 				const team1Score = mapName.clone();
 				$(team1Score).attr('style', 'padding-left: 5%');
@@ -38,12 +41,19 @@
 				$(mapName).attr('label', 'Map ' + (i + 1));
 
 				const onChange = () => {
-					maps.value[i] = {map: mapName[0].value, team1Score: team1Score[0].value, team2Score: team2Score[0].value};
+					const boxes = document.getElementsByTagName('paper-checkbox');
+					for (const box of boxes) {
+						if (parseInt(box.id, 10) !== i) {
+							box.checked = false;
+						}
+					}
+					maps.value[i] = {map: mapName[0].value, team1Score: team1Score[0].value, team2Score: team2Score[0].value, current: current[0].checked};
 				};
 
 				$(mapName).on('change', onChange);
 				$(team1Score).on('change', onChange);
 				$(team2Score).on('change', onChange);
+				$(current).on('change', onChange);
 
 				if (mapList !== undefined) {
 					mapName[0].value = mapList[i].map;
@@ -51,7 +61,7 @@
 					team2Score[0].value = mapList[i].team2Score;
 				}
 
-				$(mapItem).append(mapName, team1Score, team2Score);
+				$(mapItem).append(mapName, team1Score, team2Score, current);
 				$(div).append(mapItem);
 			}
 		}
