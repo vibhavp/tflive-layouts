@@ -97,9 +97,8 @@
 	});
 
 	const change_song = (song) => {
-		console.log(song);
 		if (song) {
-			console.log($("#now-playing").html("&#9836; <i>"+song+"</i"));
+			$("#now-playing").html("&#9836; <i>"+song+"</i>")
 		}
 	};
 	const now_playing = new nodecg.Replicant("now_playing", "tflive");
