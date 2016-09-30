@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<link rel="import" href="components/nodecg-replicant-input/nodecg-replicant-input.html">
-	<link rel="import" href="components/paper-input/paper-input.html">
-	<link rel="import" href="components/paper-checkbox/paper-checkbox.html">
-	<link rel="import" href="components/nodecg-replicant/nodecg-replicant.html">
-	<link rel="stylesheet" type="text/css" href="match.css">
-	<script src="components/jquery/dist/jquery.min.js"></script>
-</head>
-<body>
-	<nodecg-replicant-input label="Team 1" replicant-name="team1"></nodecg-replicant-input>
-	<nodecg-replicant-input label="Team 2" replicant-name="team2"></nodecg-replicant-input>
-	<paper-input label="Maps" id="mapno" type="number"></paper-input>
-	<div id="maps">
-	</div>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="import" href="components/nodecg-replicant-input/nodecg-replicant-input.html">
+		<link rel="import" href="components/paper-input/paper-input.html">
+		<link rel="import" href="components/paper-checkbox/paper-checkbox.html">
+		<link rel="import" href="components/paper-button/paper-button.html">
+		<link rel="import" href="components/nodecg-replicant/nodecg-replicant.html">
+		<link rel="stylesheet" type="text/css" href="match.css">
+		<script src="components/jquery/dist/jquery.min.js"></script>
+	</head>
+	<body>
+		<nodecg-replicant-input label="Team 1" replicant-name="team1"></nodecg-replicant-input>
+		<nodecg-replicant-input label="Team 2" replicant-name="team2"></nodecg-replicant-input>
+		<paper-button raised id="swap">Swap Teams</paper-button>
+		<paper-input label="Maps" id="mapno" type="number"></paper-input>
+		<div id="maps">
+		</div>
 
-	<script src="match.js"></script>
-</body>
+		<script src="match.js"></script>
+	</body>
 </html>

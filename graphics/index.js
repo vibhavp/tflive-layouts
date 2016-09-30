@@ -70,25 +70,26 @@
 	team2.on('change', changeTeam('blu'));
 	setMaps();
 
-	const roles = new window.nodecg.Replicant("roles", "tflive");
+	const roles = new window.nodecg.Replicant('roles', 'tflive');
+	let timer;
 
-	roles.on("change", (values) => {
-		for (let role in values) {
-			let node = $("#"+role);
-			let profile = values[role];
+	roles.on('change', values => {
+		for (const role in values) {
+			const node = $('#' + role);
+			const profile = values[role];
 
 			if (!profile.name) {
 				node.hide();
 			} else {
-				$("#name", node).text(profile.name);
+				$('#name', node).text(profile.name);
 
-				if (profile.twitter_id){
-					$("#twitter", node).text("@"+profile.twitter_id);
+				if (profile.twitter_id) {
+					$('#twitter', node).text('@' + profile.twitter_id);
 
-					$(".twitter", node).attr("src", profile.twitter_img);
-					$(".twitter", node).show();
+					$('.twitter', node).attr('src', profile.twitter_img);
+					$('.twitter', node).show();
 				} else {
-					$(".twitter", node).hide();
+					$('.twitter', node).hide();
 				}
 
 				node.show();
@@ -96,12 +97,13 @@
 		}
 	});
 
-	const change_song = (song) => {
+	const change_song = song => {
 		if (song) {
-			$("#now-playing").html("&#9836; <i>"+song+"</i>")
+			$('#now-playing').html('&#9836; <i>' + song + '</i>');
 		}
 	};
-	const now_playing = new nodecg.Replicant("now_playing", "tflive");
-	now_playing.on("change", change_song);
-	nodecg.readReplicant("now_playing", "tflive", change_song);
+
+	const now_playing = new nodecg.Replicant('now_playing', 'tflive');
+	now_playing.on('change', change_song);
+	nodecg.readReplicant('now_playing', 'tflive', change_song);
 })();

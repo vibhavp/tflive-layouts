@@ -55,7 +55,7 @@
 				$(team2Score).on('change', onChange);
 				$(current).on('change', onChange);
 
-				if (mapList !== undefined) {
+				if (mapList) {
 					mapName[0].value = mapList[i].map;
 					team1Score[0].value = mapList[i].team1Score;
 					team2Score[0].value = mapList[i].team2Score;
@@ -68,9 +68,30 @@
 	}
 
 	window.nodecg.readReplicant('maps', 'tflive', maps => {
-		if ( maps !== undefined ) {
+		if (maps) {
 			node.value = String(maps.length);
 			setMapInput(maps.length, maps);
 		}
+	});
+
+	const swapButton = $('#swap');
+	const team1 = new nodecg.Replicant('team1', 'tflive');
+	const team2 = new nodecg.Replicant('team2', 'tflive');
+
+	swapButton.on('click', () => {
+		const tmp = (team1.value);
+		team1.value = team2.value;
+		team2.value = tmp;
+
+		nodecg.readReplicant('maps', 'tflive', mapsInfo => {
+			for (const i in mapsInfo) {
+				const tmp = mapsInfo[i].team1Score;
+				mapsInfo[i].team1Score = mapsInfo[i].team2Score;
+				mapsInfo[i].team2Score = tmp;
+			}
+
+			maps.value = mapsInfo;
+			location.reload();
+		});
 	});
 })();
