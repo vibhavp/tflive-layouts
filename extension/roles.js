@@ -1,26 +1,9 @@
 const Twitter = require('twitter');
 
-const Role = (function () {
-	function Role(name, twitter_id, twitter_img) {
-		if (twitter_img) {
-			twitter_img = twitter_img.replace("_normal", "");
-		}
-		this.name = name;
-		this.twitter_id = twitter_id;
-		this.twitter_img = twitter_img;
-	}
-	return Role;
-}());
-
-function get_large(img) {
-	return img.replace('_normal', '');
-}
-
 module.exports = function (nodecg) {
-	const roles = new nodecg.Replicant('roles', 'tflive', { defaultValue: {
-		'caster1': new Role(), 'caster2': new Role(), 'analyst1': new Role(),
-		'analyst2': new Role(), 'camera': new Role(), 'production': new Role()
-        } });
+	const roles = new nodecg.Replicant('roles', 'tflive', {defaultValue: {
+		'caster1': {}, 'caster2': {}, 'analyst1': {},
+		'analyst2': {}, 'camera': {}, 'production': {}}});
 
 	let client;
 	if (!nodecg.bundleConfig) {
@@ -36,18 +19,39 @@ module.exports = function (nodecg) {
 		});
 	}
 
-	nodecg.listenFor('rolesChange', function (data) {
-		let twitter_img = '';
+	function getImage(twitterId, callback) {
+		let twitterImg;
+
 		if (client) {
-			client.get('users/show', {screen_name: data.twitter_id}, (error, profile) => {
+			client.get('users/show', {screen_name: twitterId}, (error, profile) => {
 				if (error) {
 					nodecg.log.error('%j', error);
+				} else {
+					twitterImg = profile.profile_image_url.replace('_normal', '');
 				}
-				else {
-					twitter_img = get_large(profile.profile_image_url);
-				}
+				callback(twitterImg || '');
+			});
+		} else {
+			callback('');
+		}
+	}
+
+	nodecg.listenFor('rolesChange', data => {
+		getImage(data.twitter_id, img => {
+			roles.value[data.role] = {name: data.name, twitter_id: data.twitter_id, twitter_img: img};
+		});
+	});
+
+	nodecg.readReplicant('roles', 'tflive', allRoles => {
+		console.log(allRoles);
+		for (const role in allRoles) {
+			const data = allRoles[role];
+			getImage(data.twitter_id, img => {
+				console.log(img);
+				allRoles[role] = {name: data.name, twitter_id: data.twitter_id, twitter_img: img};
 			});
 		}
-		roles.value[data.role] = new Role(data.name, data.twitter_id, twitter_img);
+
+		roles.value = allRoles;
 	});
 };

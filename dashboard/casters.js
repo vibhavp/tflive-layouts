@@ -1,9 +1,9 @@
 (function() {
 	'use strict';
 
-	const inputs = document.getElementsByClassName("role");
+	const inputs = document.getElementsByClassName('role');
 	const nodecg = window.nodecg;
-	const roles = nodecg.Replicant("roles", "tflive");
+	const roles = nodecg.Replicant('roles', 'tflive');
 
 	for (let i in inputs) {
 		const id = inputs[i].id;
@@ -12,7 +12,7 @@
 			continue;
 		}
 
-		const twitter_input = document.getElementById(id+"_twitter");
+		const twitter_input = document.getElementById(id+'_twitter');
 		const callback = () => {
 			let name = name_input.value, twitter = twitter_input.value;
 
@@ -23,10 +23,10 @@
 				twitter = null;
 			}
 
-			nodecg.sendMessage("rolesChange", {
+			nodecg.sendMessage('rolesChange', {
 				role: id,
 				name: name,
-				twitter_id: twitter
+				twitter_id: twitter.replace('@', '')
 			});
 		};
 		const set_values = (data) => {
@@ -34,10 +34,10 @@
 			twitter_input.value = data[id].twitter_id;
 		};
 
-		name_input.addEventListener("change", callback);
-		twitter_input.addEventListener("change", callback);
+		name_input.addEventListener('change', callback);
+		twitter_input.addEventListener('change', callback);
 
-		nodecg.readReplicant("roles", (data) => {
+		nodecg.readReplicant('roles', (data) => {
 			if (data[id].name) {
 				name_input.value = data[id].name;
 			}

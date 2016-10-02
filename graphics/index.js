@@ -36,7 +36,7 @@
 		const mapsDiv = $('#text', '#maps');
 
 		nodecg.readReplicant('maps', 'tflive', maps => {
-			if (maps.length === 0) {
+			if (maps && maps.length === 0) {
 				setTimeout(setMaps, 5000);
 				return;
 			}
@@ -91,6 +91,7 @@
 	let timer;
 
 	roles.on('change', values => {
+
 		for (const role in values) {
 			const node = $('#' + role);
 			const profile = values[role];
@@ -101,6 +102,7 @@
 				$('#name', node).text(profile.name);
 
 				if (profile.twitter_id) {
+					console.log(profile);
 					$('#twitter', node).text('@' + profile.twitter_id);
 
 					$('.twitter', node).attr('src', profile.twitter_img);
