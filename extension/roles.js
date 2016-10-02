@@ -40,7 +40,7 @@ module.exports = function (nodecg) {
 					nodecg.log.error('%s', error);
 				}
 				else {
-					twitter_img = profile.profile_image_url_http;
+					twitter_img = profile.profile_image_url_https;
 				}
 			});
 		}
