@@ -12,6 +12,10 @@ const Role = (function () {
 	return Role;
 }());
 
+function get_large(img) {
+	return img.replace('_normal', '');
+}
+
 module.exports = function (nodecg) {
 	const roles = new nodecg.Replicant('roles', 'tflive', { defaultValue: {
 		'caster1': new Role(), 'caster2': new Role(), 'analyst1': new Role(),
@@ -40,7 +44,7 @@ module.exports = function (nodecg) {
 					nodecg.log.error('%s', error);
 				}
 				else {
-					twitter_img = profile.profile_image_url_https;
+					twitter_img = get_large(profile.profile_image_url);
 				}
 			});
 		}
