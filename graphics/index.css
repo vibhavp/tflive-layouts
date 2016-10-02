@@ -25,6 +25,7 @@ body {
 }
 
 #tflive-logo {
+	display: none;
 	position: absolute;
 	left: 0px;
 	bottom: 82%;
