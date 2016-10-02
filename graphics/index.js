@@ -1,8 +1,5 @@
 (function () {
 	const nodecg = window.nodecg;
-	let cur_map_index = 0;
-	let show_all_maps = true;
-	const mapsDiv = document.getElementById('maps');
 	const team1 = new nodecg.Replicant('team1', 'tflive');
 	const team2 = new nodecg.Replicant('team2', 'tflive');
 
@@ -31,7 +28,13 @@
 		return '';
 	}
 
+	let cur_map_index = 0;
+	let show_all_maps = true;
+	let show_stage = true;
+
 	function setMaps() {
+		const mapsDiv = $('#text', '#maps');
+
 		nodecg.readReplicant('maps', 'tflive', maps => {
 			if (maps.length === 0) {
 				setTimeout(setMaps, 5000);
@@ -40,11 +43,25 @@
 
 			if (show_all_maps) {
 				show_all_maps = false;
-				mapsDiv.innerText = makeMapText(maps);
+				show_stage = true;
+				mapsDiv.fadeOut(() => {
+					mapsDiv.text(makeMapText(maps));
+				}).fadeIn();
+			} else if (show_stage) {
+				nodecg.readReplicant('stage', 'tflive', stage => {
+					if (stage || stage.trim() !== '') {
+						mapsDiv.fadeOut(() => {
+							mapsDiv.text(stage);
+						}).fadeIn();
+					}
+				});
+				show_stage = false;
 			} else {
 				const curMap = maps[cur_map_index++];
+				mapsDiv.fadeOut(() => {
+					mapsDiv.text(curMap.map + ' ' + curMap.team1Score + '-' + curMap.team2Score + ' ' + winner(curMap));
+				}).fadeIn();
 
-				mapsDiv.innerText = 'Map #' + (cur_map_index) + ': ' + curMap.map + ' ' + curMap.team1Score + '-' + curMap.team2Score + ' ' + winner(curMap);
 				if (cur_map_index === maps.length) {
 					show_all_maps = true;
 					cur_map_index = 0;
@@ -56,12 +73,12 @@
 
 	function changeTeam(color) {
 		return function (team) {
-			const e = document.getElementById(color);
+			const e = $('#' + color);
 
-			if (team === undefined || team === '') {
-				e.innerText = 'TBD';
+			if (!team || team.trim() === '') {
+				e.text('TBD');
 			} else {
-				e.innerText = team;
+				e.text(team);
 			}
 		};
 	}
@@ -98,8 +115,11 @@
 	});
 
 	const change_song = song => {
-		if (song) {
-			$('#now-playing').html('&#9836; <i>' + song + '</i>');
+		if (song || song.trim === '') {
+			$('#music').show();
+			$('#text', '#music').text(song);
+		} else {
+			$('#music').hide();
 		}
 	};
 
