@@ -41,7 +41,7 @@ module.exports = function (nodecg) {
 		if (client) {
 			client.get('users/show', {screen_name: data.twitter_id}, (error, profile) => {
 				if (error) {
-					nodecg.log.error('%s', error);
+					nodecg.log.error('%j', error);
 				}
 				else {
 					twitter_img = get_large(profile.profile_image_url);
