@@ -14,22 +14,16 @@
 
 		const twitter_input = document.getElementById(id+'_twitter');
 		const callback = () => {
-			let name = name_input.value, twitter = twitter_input.value;
-
-			if (!name_input.value) {
-				name = null;
-			}
-			if (!twitter_input.value) {
-				twitter = null;
-			}
+			let name = name_input.value || '';
+			let twitter = twitter_input.value || '';
 
 			nodecg.sendMessage('rolesChange', {
 				role: id,
 				name: name,
-				twitter_id: twitter.replace('@', '')
+				twitter_id: twitter.replace('@', '').trim()
 			});
 		};
-		const set_values = (data) => {
+		const set_values = data => {
 			name_input.value = data[id].name;
 			twitter_input.value = data[id].twitter_id;
 		};
