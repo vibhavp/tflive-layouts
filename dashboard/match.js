@@ -27,7 +27,7 @@
 			for (let i = length; i < num; i++) {
 				const mapItem = $('<div class="map" id="map' + i + '"></div>');
 				const mapName = $('<paper-input></paper-input>');
-				const current = $('<paper-checkbox>Current</paper-checkbox>');
+				const current = $('<paper-radio-button>Current</paper-radio-button>');
 				$(current).attr('style', 'padding-left: 2px;');
 				$(current).attr('id', i);
 
@@ -41,7 +41,7 @@
 				$(mapName).attr('label', 'Map ' + (i + 1));
 
 				const onChange = () => {
-					const boxes = document.getElementsByTagName('paper-checkbox');
+					const boxes = document.getElementsByTagName('paper-radio-button');
 					for (const box of boxes) {
 						if (parseInt(box.id, 10) !== i) {
 							box.checked = false;
@@ -59,6 +59,7 @@
 					mapName[0].value = mapList[i].map;
 					team1Score[0].value = mapList[i].team1Score;
 					team2Score[0].value = mapList[i].team2Score;
+					current[0].checked = mapList[i].current;
 				}
 
 				$(mapItem).append(mapName, team1Score, team2Score, current);
