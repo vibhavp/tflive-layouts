@@ -49,7 +49,7 @@
 				}).fadeIn();
 			} else if (show_stage) {
 				nodecg.readReplicant('stage', 'tflive', stage => {
-					if (stage || stage.trim() !== '') {
+					if (stage && stage.trim() !== '') {
 						mapsDiv.fadeOut(() => {
 							mapsDiv.text(stage);
 						}).fadeIn();
@@ -91,24 +91,26 @@
 	let timer;
 
 	roles.on('change', values => {
-
 		for (const role in values) {
 			const node = $('#' + role);
 			const profile = values[role];
+			const twitter = $('#twitter', node);
+			const twitterImg = $('.twitter', node);
 
 			if (!profile.name) {
 				node.hide();
 			} else {
 				$('#name', node).text(profile.name);
 
-				if (profile.twitter_id) {
-					console.log(profile);
-					$('#twitter', node).text('@' + profile.twitter_id);
+				if (profile.twitter_id && profile.twitter_id !== '') {
+					twitter.text('@' + profile.twitter_id);
+					twitter.css('visibility', 'visible');
 
-					$('.twitter', node).attr('src', profile.twitter_img);
-					$('.twitter', node).show();
+					twitterImg.attr('src', profile.twitter_img);
+					twitterImg.css('visibility', 'visible');
 				} else {
-					$('.twitter', node).hide();
+					twitter.text('');
+					twitterImg.css('visibility', 'hidden');
 				}
 
 				node.show();
@@ -117,7 +119,7 @@
 	});
 
 	const change_song = song => {
-		if (song || song.trim === '') {
+		if (song && song.trim() !== '') {
 			$('#music').show();
 			$('#text', '#music').text(song);
 		} else {
