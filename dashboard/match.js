@@ -42,10 +42,14 @@
 
 				const onChange = () => {
 					const boxes = document.getElementsByTagName('paper-radio-button');
-					for (const box of boxes) {
+					Array.from(boxes).forEach(box => {
 						if (parseInt(box.id, 10) !== i) {
 							box.checked = false;
 						}
+					});
+
+					if (i === 0 && maps.length === 1) {
+						current[0].checked = true;
 					}
 					maps.value[i] = {map: mapName[0].value, team1Score: team1Score[0].value, team2Score: team2Score[0].value, current: current[0].checked};
 				};
