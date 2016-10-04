@@ -2,7 +2,7 @@
 	'use strict';
 
 	const node = document.getElementById('mapno');
-	// var nodecg = new NodeCG('tflive');
+	const nodecg = window.nodecg;
 	const maps = new window.nodecg.Replicant('maps', 'tflive', {defaultValue: []});
 
 	$(node).on('change', () => {
@@ -28,8 +28,8 @@
 				const mapItem = $('<div class="map" id="map' + i + '"></div>');
 				const mapName = $('<paper-input></paper-input>');
 				const current = $('<paper-radio-button>Current</paper-radio-button>');
-				$(current).attr('style', 'padding-left: 2px;');
-				$(current).attr('id', i);
+				current.attr('style', 'padding-left: 2px;');
+				current.attr('id', i);
 
 				const team1Score = mapName.clone();
 				$(team1Score).attr('style', 'padding-left: 5%');
@@ -39,25 +39,38 @@
 				$(team2Score).attr('label', 'Team 2 Score');
 
 				$(mapName).attr('label', 'Map ' + (i + 1));
+				team1Score[0].value = 0;
+				team2Score[0].value = 0;
 
 				const onChange = () => {
-					const boxes = document.getElementsByTagName('paper-radio-button');
-					Array.from(boxes).forEach(box => {
-						if (parseInt(box.id, 10) !== i) {
-							box.checked = false;
-						}
-					});
-
-					if (i === 0 && maps.length === 1) {
-						current[0].checked = true;
-					}
 					maps.value[i] = {map: mapName[0].value, team1Score: team1Score[0].value, team2Score: team2Score[0].value, current: current[0].checked};
+
+					if (current[0].checked) {
+						const boxes = document.getElementsByTagName('paper-radio-button');
+						for (const box of boxes) {
+							if (!box.checked) {
+								continue;
+							}
+
+							const boxId = parseInt(box.id, 10);
+
+							if (boxId !== i) {
+								const clone = JSON.parse(JSON.stringify(maps.value[boxId]));
+								clone.current = false;
+								maps.value[boxId] = clone;
+								box.checked = false;
+							}
+						}
+					}
 				};
 
 				$(mapName).on('change', onChange);
 				$(team1Score).on('change', onChange);
 				$(team2Score).on('change', onChange);
 				$(current).on('change', onChange);
+
+				team1Score[0].value = 0;
+				team2Score[0].value = 0;
 
 				if (mapList) {
 					mapName[0].value = mapList[i].map;
@@ -94,6 +107,7 @@
 				mapsInfo[i].team1Score = mapsInfo[i].team2Score;
 				mapsInfo[i].team2Score = tmp;
 			}
+
 
 			maps.value = mapsInfo;
 			location.reload();
