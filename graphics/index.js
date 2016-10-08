@@ -97,9 +97,7 @@
 			const twitter = $('#twitter', node);
 			const twitterImg = $('.twitter', node);
 
-			if (!profile.name) {
-				node.hide();
-			} else {
+			if (profile.name) {
 				$('#name', node).text(profile.name);
 
 				if (profile.twitter_id && profile.twitter_id !== '') {
@@ -114,7 +112,54 @@
 				}
 
 				node.show();
+			} else {
+				node.hide();
 			}
+		}
+	});
+
+	nodecg.listenFor('mumble_status', data => {
+		if (data.role) {
+			const role = data.role;
+			const mumbleIcon = $('.active', '#' + role);
+			if (data.active) {
+				mumbleIcon.css('visibility', 'visible');
+			} else {
+				mumbleIcon.css('visibility', 'hidden');
+			}
+		} else { // is a player
+			const span = $('#mumble-player-' + data.name);
+			if (data.active) {
+				span.css('color', 'red');
+			} else {
+				span.css('color', 'white');
+			}
+		}
+	});
+
+	const mumbleUserList = new nodecg.Replicant('mumble_player_list', 'tflive');
+	mumbleUserList.on('change', players => {
+		if (!players) {
+			return;
+		}
+
+		$('#mumble').empty();
+
+		for (const player of players) {
+			const name = player;
+			const span = $('<span class="mumble-player"></span>');
+			span.attr('id', 'mumble-player-' + name);
+			span.text(name);
+			$('#mumble').append(span);
+		}
+	});
+
+	const showMumbleOverlay = new nodecg.Replicant('show_mumble_overlay', 'tflive');
+	showMumbleOverlay.on('change', show => {
+		if (show) {
+			$('#mumble').fadeIn();
+		} else {
+			$('#mumble').slideUp();
 		}
 	});
 

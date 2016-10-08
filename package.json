@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "lastfm-listener": "^1.0.4",
+    "mumble": "^0.3.10",
     "twitter": "^1.4.0",
     "typescript": "^1.8.10"
   },
@@ -42,6 +43,13 @@
         "headerColor": "#9f9bbd"
       },
       {
+        "name": "mumble",
+        "title": "Mumble",
+        "width": 2,
+        "file": "mumble.html",
+        "headerColor": "#9f9bbd"
+      },
+      {
         "name": "music",
         "title": "Music",
         "width": 3,
@@ -61,7 +69,8 @@
         "name": "maps",
         "title": "Maps",
         "allowedTypes": [
-          "png", "webm"
+          "png",
+          "webm"
         ]
       }
     ]

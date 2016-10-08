@@ -31,16 +31,16 @@
 				current.attr('style', 'padding-left: 2px;');
 				current.attr('id', i);
 
-				const team1Score = mapName.clone();
-				$(team1Score).attr('style', 'padding-left: 5%');
-				$(team1Score).attr('type', 'number');
-				$(team1Score).attr('label', 'Team 1 Score');
-				const team2Score = team1Score.clone();
-				$(team2Score).attr('label', 'Team 2 Score');
+				const team2Score = mapName.clone();
+				$(team2Score).attr('style', 'padding-left: 5%');
+				$(team2Score).attr('type', 'number');
+				$(team2Score).attr('label', 'BLU Score');
+
+				const team1Score = team2Score.clone();
+				$(team1Score).attr('label', 'RED Score');
 
 				$(mapName).attr('label', 'Map ' + (i + 1));
-				team1Score[0].value = 0;
-				team2Score[0].value = 0;
+				team2Score[0].value = team1Score[0].value = 0;
 
 				const onChange = () => {
 					maps.value[i] = {map: mapName[0].value, team1Score: team1Score[0].value, team2Score: team2Score[0].value, current: current[0].checked};
@@ -79,7 +79,7 @@
 					current[0].checked = mapList[i].current;
 				}
 
-				$(mapItem).append(mapName, team1Score, team2Score, current);
+				$(mapItem).append(mapName, team2Score, team1Score, current);
 				$(div).append(mapItem);
 			}
 		}

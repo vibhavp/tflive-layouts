@@ -38,7 +38,7 @@ module.exports = function (nodecg) {
 
 	nodecg.listenFor('rolesChange', data => {
 		getImage(data.twitter_id, img => {
-			roles.value[data.role] = {name: data.name, twitter_id: data.twitter_id, twitter_img: img};
+			roles.value[data.role] = {name: data.name, twitter_id: data.twitter_id, twitter_img: img, mumble_name: data.mumble_name};
 		});
 	});
 
