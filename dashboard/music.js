@@ -11,4 +11,14 @@
 	use_lastfm.on('change', value => {
 		node.active = value;
 	});
+
+	const show = document.getElementById('show');
+	const showRep = new nodecg.Replicant('show_now_playing', 'tflive');
+	show.addEventListener('change', () => {
+		showRep.value = show.active;
+	});
+
+	showRep.on('change', value => {
+		show.active = value;
+	});
 })();

@@ -128,11 +128,11 @@
 				mumbleIcon.css('visibility', 'hidden');
 			}
 		} else { // is a player
-			const span = $('#mumble-player-' + data.name);
+			const div = $('#mumble-player-' + data.name);
 			if (data.active) {
-				span.css('color', 'red');
+				div.css('color', 'red');
 			} else {
-				span.css('color', 'white');
+				div.css('color', 'white');
 			}
 		}
 	});
@@ -147,9 +147,8 @@
 
 		for (const player of players) {
 			const name = player;
-			const span = $('<span class="mumble-player"></span>');
+			const span = $('<span class="mumble-player"><i class="fa fa-user" aria-hidden="true"></i>' + name + '</span>');
 			span.attr('id', 'mumble-player-' + name);
-			span.text(name);
 			$('#mumble').append(span);
 		}
 	});
@@ -163,13 +162,16 @@
 		}
 	});
 
-	const change_song = song => {
-		if (song && song.trim() !== '') {
+	const showNowPlaying = new nodecg.Replicant('show_now_playing', 'tflive');
+	showNowPlaying.on('change', show => {
+		if (show) {
 			$('#music').show();
-			$('#text', '#music').text(song);
 		} else {
 			$('#music').hide();
 		}
+	});
+	const change_song = song => {
+		$('#text', '#music').text(song);
 	};
 
 	const now_playing = new nodecg.Replicant('now_playing', 'tflive');
