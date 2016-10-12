@@ -2,10 +2,14 @@
 <html lang="en">
 	<head>
 		<link rel="import" href="components/nodecg-replicant-input/nodecg-replicant-input.html">
+		<link rel="import" href="components/iron-icons/iron-icons.html">
 		<link rel="import" href="components/nodecg-toast/nodecg-toast.html">
 		<link rel="import" href="components/paper-button/paper-button.html">
+		<link rel="import" href="components/paper-icon-button/paper-icon-button.html">
 		<script src="components/jquery/dist/jquery.min.js"></script>
 		<link rel="import" href="components/paper-toggle-button/paper-toggle-button.html">
+		<link rel="import" href="components/paper-input/paper-input.html">
+		<link rel="stylesheet" type="text/css" href="mumble.css">
 	</head>
 	<body>
 		<nodecg-replicant-input label="Mumble Address" replicant-name="mumble_addr"></nodecg-replicant-input>
@@ -17,6 +21,9 @@
 		<paper-toggle-button id="show-mumble">Show Mumble Overlay</paper-toggle-button>
 
 		<nodecg-toast text="Connected to Mumble!"></nodecg-toast>
+		<paper-button id="add-name" raised>Add Filtered Name</paper-button>
+		<div id="mumble-filter">
+		</div>
 		<script src="mumble.js"></script>
 	</body>
 </html>
