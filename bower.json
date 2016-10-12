@@ -9,6 +9,7 @@
     "paper-toggle-button": "PolymerElements/paper-toggle-button#^1.2.0",
     "jquery": "^3.1.0",
     "paper-radio-button": "PolymerElements/paper-radio-button#^1.2.1",
-    "components-font-awesome": "^4.6.3"
+    "components-font-awesome": "^4.6.3",
+    "paper-icon-button": "PolymerElements/paper-icon-button#^1.1.3"
   }
 }
