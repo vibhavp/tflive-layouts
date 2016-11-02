@@ -37,6 +37,13 @@
 
 		nodecg.readReplicant('maps', 'tflive', maps => {
 			if (maps && maps.length === 0) {
+				nodecg.readReplicant('stage', 'tflive', stage => {
+					if (stage && stage.trim() !== '') {
+						mapsDiv.fadeOut(() => {
+							mapsDiv.text(stage);
+						}).fadeIn();
+					}
+				});
 				setTimeout(setMaps, 5000);
 				return;
 			}
@@ -59,7 +66,7 @@
 			} else {
 				const curMap = maps[cur_map_index++];
 				mapsDiv.fadeOut(() => {
-					mapsDiv.text(curMap.map + ' ' + curMap.team1Score + '-' + curMap.team2Score + ' ' + winner(curMap));
+					mapsDiv.text(curMap.map + ' ' + curMap.team2Score + '-' + curMap.team1Score + ' ' + winner(curMap));
 				}).fadeIn();
 
 				if (cur_map_index === maps.length) {
