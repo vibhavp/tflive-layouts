@@ -11,8 +11,7 @@
   "dependencies": {
     "lastfm-listener": "^1.0.4",
     "mumble": "^0.3.10",
-    "twitter": "^1.4.0",
-    "typescript": "^1.8.10"
+    "twitter": "^1.4.0"
   },
   "files": [
     "dashboard",

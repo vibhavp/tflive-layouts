@@ -3,7 +3,7 @@
 
 	const inputs = document.getElementsByClassName('role');
 	const nodecg = window.nodecg;
-	const roles = nodecg.Replicant('roles', 'tflive');
+	const roles = nodecg.Replicant('roles', 'tflive-pregame');
 
 	for (let i in inputs) {
 		const id = inputs[i].id;

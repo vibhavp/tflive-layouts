@@ -1,7 +1,7 @@
 const Twitter = require('twitter');
 
 module.exports = function (nodecg) {
-	const roles = new nodecg.Replicant('roles', 'tflive', {defaultValue: {
+	const roles = new nodecg.Replicant('roles', 'tflive-pregame', {defaultValue: {
 		'caster1': {}, 'caster2': {}, 'analyst1': {},
 		'analyst2': {}, 'camera': {}, 'production': {}}});
 
@@ -42,7 +42,7 @@ module.exports = function (nodecg) {
 		});
 	});
 
-	nodecg.readReplicant('roles', 'tflive', allRoles => {
+	nodecg.readReplicant('roles', 'tflive-pregame', allRoles => {
 		console.log(allRoles);
 		for (const role in allRoles) {
 			const data = allRoles[role];

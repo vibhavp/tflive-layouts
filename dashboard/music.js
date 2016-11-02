@@ -3,7 +3,7 @@
 
 	const nodecg = window.nodecg;
 	const node = document.getElementById('lastfm');
-	const use_lastfm = new nodecg.Replicant('use_lastfm', 'tflive');
+	const use_lastfm = new nodecg.Replicant('use_lastfm', 'tflive-pregame');
 	node.addEventListener('change', () => {
 		use_lastfm.value = node.active;
 	});
@@ -13,7 +13,7 @@
 	});
 
 	const show = document.getElementById('show');
-	const showRep = new nodecg.Replicant('show_now_playing', 'tflive');
+	const showRep = new nodecg.Replicant('show_now_playing', 'tflive-pregame');
 	show.addEventListener('change', () => {
 		showRep.value = show.active;
 	});

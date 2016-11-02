@@ -1,7 +1,7 @@
 (function () {
 	const nodecg = window.nodecg;
-	const team1 = new nodecg.Replicant('team1', 'tflive');
-	const team2 = new nodecg.Replicant('team2', 'tflive');
+	const team1 = new nodecg.Replicant('team1', 'tflive-pregame');
+	const team2 = new nodecg.Replicant('team2', 'tflive-pregame');
 
 	function makeMapText(maps) {
 		let str = '';
@@ -35,9 +35,9 @@
 	function setMaps() {
 		const mapsDiv = $('#text', '#maps');
 
-		nodecg.readReplicant('maps', 'tflive', maps => {
+		nodecg.readReplicant('maps', 'tflive-pregame', maps => {
 			if (maps && maps.length === 0) {
-				nodecg.readReplicant('stage', 'tflive', stage => {
+				nodecg.readReplicant('stage', 'tflive-pregame', stage => {
 					if (stage && stage.trim() !== '') {
 						mapsDiv.fadeOut(() => {
 							mapsDiv.text(stage);
@@ -55,7 +55,7 @@
 					mapsDiv.text(makeMapText(maps));
 				}).fadeIn();
 			} else if (show_stage) {
-				nodecg.readReplicant('stage', 'tflive', stage => {
+				nodecg.readReplicant('stage', 'tflive-pregame', stage => {
 					if (stage && stage.trim() !== '') {
 						mapsDiv.fadeOut(() => {
 							mapsDiv.text(stage);
@@ -94,7 +94,7 @@
 	team2.on('change', changeTeam('blu'));
 	setMaps();
 
-	const roles = new window.nodecg.Replicant('roles', 'tflive');
+	const roles = new window.nodecg.Replicant('roles', 'tflive-pregame');
 	let timer;
 
 	roles.on('change', values => {
@@ -144,7 +144,7 @@
 		}
 	});
 
-	const mumbleUserList = new nodecg.Replicant('mumble_player_list', 'tflive');
+	const mumbleUserList = new nodecg.Replicant('mumble_player_list', 'tflive-pregame');
 	mumbleUserList.on('change', players => {
 		if (!players) {
 			return;
@@ -160,7 +160,7 @@
 		}
 	});
 
-	const showMumbleOverlay = new nodecg.Replicant('show_mumble_overlay', 'tflive');
+	const showMumbleOverlay = new nodecg.Replicant('show_mumble_overlay', 'tflive-pregame');
 	showMumbleOverlay.on('change', show => {
 		if (show) {
 			$('#mumble').fadeIn();
@@ -169,7 +169,7 @@
 		}
 	});
 
-	const showNowPlaying = new nodecg.Replicant('show_now_playing', 'tflive');
+	const showNowPlaying = new nodecg.Replicant('show_now_playing', 'tflive-pregame');
 	showNowPlaying.on('change', show => {
 		if (show) {
 			$('#music').show();
@@ -181,7 +181,7 @@
 		$('#text', '#music').text(song);
 	};
 
-	const now_playing = new nodecg.Replicant('now_playing', 'tflive');
+	const now_playing = new nodecg.Replicant('now_playing', 'tflive-pregame');
 	now_playing.on('change', change_song);
-	nodecg.readReplicant('now_playing', 'tflive', change_song);
+	nodecg.readReplicant('now_playing', 'tflive-pregame', change_song);
 })();

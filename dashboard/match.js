@@ -3,7 +3,7 @@
 
 	const node = document.getElementById('mapno');
 	const nodecg = window.nodecg;
-	const maps = new window.nodecg.Replicant('maps', 'tflive', {defaultValue: []});
+	const maps = new window.nodecg.Replicant('maps', 'tflive-pregame', {defaultValue: []});
 
 	$(node).on('change', () => {
 		const num = parseInt(node.value, 10);
@@ -85,7 +85,7 @@
 		}
 	}
 
-	window.nodecg.readReplicant('maps', 'tflive', maps => {
+	window.nodecg.readReplicant('maps', 'tflive-pregame', maps => {
 		if (maps) {
 			node.value = String(maps.length);
 			setMapInput(maps.length, maps);
@@ -93,15 +93,15 @@
 	});
 
 	const swapButton = $('#swap');
-	const team1 = new nodecg.Replicant('team1', 'tflive');
-	const team2 = new nodecg.Replicant('team2', 'tflive');
+	const team1 = new nodecg.Replicant('team1', 'tflive-pregame');
+	const team2 = new nodecg.Replicant('team2', 'tflive-pregame');
 
 	swapButton.on('click', () => {
 		const tmp = (team1.value);
 		team1.value = team2.value;
 		team2.value = tmp;
 
-		nodecg.readReplicant('maps', 'tflive', mapsInfo => {
+		nodecg.readReplicant('maps', 'tflive-pregame', mapsInfo => {
 			for (const i in mapsInfo) {
 				const tmp = mapsInfo[i].team1Score;
 				mapsInfo[i].team1Score = mapsInfo[i].team2Score;

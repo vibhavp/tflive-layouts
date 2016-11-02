@@ -1,8 +1,8 @@
 const LastFM = require('lastfm-listener');
 
 module.exports = function (nodecg) {
-	const now_playing = new nodecg.Replicant('now_playing', 'tflive', {defaultValue: ''});
-	const use_lastfm = new nodecg.Replicant('use_lastfm', 'tflive', {defaultValue: false});
+	const now_playing = new nodecg.Replicant('now_playing', 'tflive-pregame', {defaultValue: ''});
+	const use_lastfm = new nodecg.Replicant('use_lastfm', 'tflive-pregame', {defaultValue: false});
 	let client;
 
 	if (!nodecg.bundleConfig) {

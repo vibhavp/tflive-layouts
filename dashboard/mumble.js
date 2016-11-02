@@ -8,7 +8,7 @@
 		nodecg.sendMessage('mumble_connect');
 	});
 
-	const showMumbleOverlay = new nodecg.Replicant('show_mumble_overlay', 'tflive', {defaultValue: false});
+	const showMumbleOverlay = new nodecg.Replicant('show_mumble_overlay', 'tflive-pregame', {defaultValue: false});
 	const nodeToggled = $('#show-mumble');
 	nodeToggled.on('change', () => {
 		showMumbleOverlay.value = nodeToggled[0].active;
@@ -17,7 +17,7 @@
 		nodeToggled[0].active = value;
 	});
 
-	const filteredMumbleNames = new nodecg.Replicant('filtered_mumble_names', 'tflive', {defaultValue: []});
+	const filteredMumbleNames = new nodecg.Replicant('filtered_mumble_names', 'tflive-pregame', {defaultValue: []});
 
 	function newInput(index, name) {
 		const input = $('<paper-input></paper-input>');
@@ -55,11 +55,14 @@
 		}
 	});
 
-	const mumbleConnected = new nodecg.Replicant('mumble_connected', 'tflive', {persistent: false});
+	const mumbleConnected = new nodecg.Replicant('mumble_connected', 'tflive-pregame', {persistent: false, defaultValue: false});
 
 	mumbleConnected.on('change', (value) => {
-		if (value) {
+		if (value.value) {
 			$('nodecg-toast')[0].show();
+			$('#connect-mumble').text('Reconnect to Mumble!');
+		} else {
+			$('#connect-mumble').text('Connect to Mumble!');
 		}
 	});
 })();
