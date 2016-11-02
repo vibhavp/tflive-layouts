@@ -8,10 +8,6 @@
 		nodecg.sendMessage('mumble_connect');
 	});
 
-	nodecg.listenFor('mumble_connected', () => {
-		$('nodecg-toast')[0].show();
-	});
-
 	const showMumbleOverlay = new nodecg.Replicant('show_mumble_overlay', 'tflive', {defaultValue: false});
 	const nodeToggled = $('#show-mumble');
 	nodeToggled.on('change', () => {
@@ -56,6 +52,14 @@
 		for (const name of names) {
 			const input = newInput(len++, name);
 			dialog.append(input);
+		}
+	});
+
+	const mumbleConnected = new nodecg.Replicant('mumble_connected', 'tflive', {persistent: false});
+
+	mumbleConnected.on('change', (value) => {
+		if (value) {
+			$('nodecg-toast')[0].show();
 		}
 	});
 })();

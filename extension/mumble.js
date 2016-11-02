@@ -8,6 +8,7 @@ module.exports = function (nodecg) {
 	const mumblePwd = new nodecg.Replicant('mumble_pwd', 'tflive');
 	const mumbleBotName = new nodecg.Replicant('mumble_bot_name', 'tflive');
 	const mumbleChannel = new nodecg.Replicant('mumble_channel', 'tflive');
+	const mumbleConnected = new nodecg.Replicant('mumble_connected', 'tflive', {persistent: false, defaultValue: []});
 
 	const mumblePlayerList = new nodecg.Replicant('mumble_player_list', 'tflive', {persistent: false});
 	const mumbleFilteredNames = new nodecg.Replicant('filtered_mumble_names', 'tflive', {defaultValue: []});
@@ -50,7 +51,7 @@ module.exports = function (nodecg) {
 
 			if (error) {
 				nodecg.log.error('mumble error: %j', error);
-				nodecg.sendMessage('mumble_error', error);
+				mumbleConnected.value = true;
 				return;
 			}
 
@@ -76,6 +77,7 @@ module.exports = function (nodecg) {
 			connection.on('voice-start', setVoiceStatus(true));
 			connection.on('voice-end', setVoiceStatus(false));
 			connection.on('user-move', makePlayerList);
+			connection.on('user-connect', makePlayerList);
 			connection.authenticate(mumbleBotName.value, pwd);
 		});
 	}
