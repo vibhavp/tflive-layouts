@@ -56,6 +56,7 @@ body {
 #mumble {
 	background-color: rgb(42,39,37);
 
+	visibility: hidden;
 	display: flex;
 	flex-direction: column;
 	position: absolute;

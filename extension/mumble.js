@@ -8,7 +8,7 @@ module.exports = function (nodecg) {
 	const mumblePwd = new nodecg.Replicant('mumble_pwd', 'tflive-pregame');
 	const mumbleBotName = new nodecg.Replicant('mumble_bot_name', 'tflive-pregame');
 	const mumbleChannel = new nodecg.Replicant('mumble_channel', 'tflive-pregame');
-	const mumbleConnected = new nodecg.Replicant('mumble_connected', 'tflive-pregame', {persistent: false, defaultValue: []});
+	const mumbleConnected = new nodecg.Replicant('mumble_connected', 'tflive-pregame', {persistent: false, defaultValue: false});
 
 	const mumblePlayerList = new nodecg.Replicant('mumble_player_list', 'tflive-pregame', {persistent: false});
 	const mumbleFilteredNames = new nodecg.Replicant('filtered_mumble_names', 'tflive-pregame', {defaultValue: []});
@@ -37,7 +37,13 @@ module.exports = function (nodecg) {
 
 	function connectMumble() {
 		mumble.connect(mumbleAddr.value + ':' + mumblePort.value, {}, (error, connection) => {
-			const userList = [];
+			if (error) {
+				nodecg.log.error('mumble error: %j', error);
+				mumbleConnected.value = false;
+				return;
+			}
+
+			let userList = [];
 
 			function makePlayerList() {
 				for (const user of connection.users()) {
@@ -49,12 +55,6 @@ module.exports = function (nodecg) {
 				mumblePlayerList.value = userList;
 			}
 
-			if (error) {
-				nodecg.log.error('mumble error: %j', error);
-				mumbleConnected.value = true;
-				return;
-			}
-
 			let pwd;
 			if (mumblePwd.value && mumblePwd.value.trim() !== '') {
 				pwd = mumblePwd.value;
@@ -62,7 +62,7 @@ module.exports = function (nodecg) {
 
 			connection.on('ready', () => {
 				makePlayerList();
-				nodecg.sendMessage('mumble_connected');
+				mumbleConnected.value = true;
 
 				if (mumbleChannel.value && mumbleChannel.value.trim() !== '') {
 					const channel = connection.channelByName(mumbleChannel.value);
@@ -96,8 +96,10 @@ module.exports = function (nodecg) {
 
 			connection.on('voice-start', setVoiceStatus(true));
 			connection.on('voice-end', setVoiceStatus(false));
-			connection.on('user-move', makePlayerList);
-			nodecg.listenFor('mumble_refresh_players', makePlayerList);
+			nodecg.listenFor('mumble_refresh_players', () => {
+				userList = [];
+				makePlayerList();
+			});
 			connection.authenticate(mumbleBotName.value, pwd);
 		});
 	}

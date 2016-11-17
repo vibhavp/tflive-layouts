@@ -24,6 +24,7 @@
 		input.attr('label', 'Name');
 		input.on('change', () => {
 			filteredMumbleNames.value[index] = input[0].value;
+			nodecg.sendMessage('mumble_refresh_players');
 		});
 		if (name) {
 			input[0].value = name;
@@ -58,7 +59,7 @@
 	const mumbleConnected = new nodecg.Replicant('mumble_connected', 'tflive-pregame', {persistent: false, defaultValue: false});
 
 	mumbleConnected.on('change', (value) => {
-		if (value.value) {
+		if (value) {
 			$('nodecg-toast')[0].show();
 			$('#connect-mumble').text('Reconnect to Mumble!');
 		} else {

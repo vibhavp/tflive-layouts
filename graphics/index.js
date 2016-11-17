@@ -163,7 +163,8 @@
 	const showMumbleOverlay = new nodecg.Replicant('show_mumble_overlay', 'tflive-pregame');
 	showMumbleOverlay.on('change', show => {
 		if (show) {
-			$('#mumble').fadeIn();
+			$('#mumble').css('visibility', 'visible');
+			$('#mumble').slideDown();
 		} else {
 			$('#mumble').slideUp();
 		}
