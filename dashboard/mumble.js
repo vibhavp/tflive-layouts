@@ -65,4 +65,8 @@
 			$('#connect-mumble').text('Connect to Mumble!');
 		}
 	});
+
+	$('#refresh-mumble').on('click', () => {
+		nodecg.sendMessage('mumble_refresh_players');
+	});
 })();

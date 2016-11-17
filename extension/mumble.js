@@ -78,9 +78,15 @@ module.exports = function (nodecg) {
 			connection.on('voice-end', setVoiceStatus(false));
 			connection.on('user-move', makePlayerList);
 			connection.on('user-connect', makePlayerList);
+			nodecg.listenFor('mumble_refresh_players', makePlayerList);
 			connection.authenticate(mumbleBotName.value, pwd);
 		});
 	}
 
-	nodecg.listenFor('mumble_connect', connectMumble);
+	try {
+		nodecg.listenFor('mumble_connect', connectMumble);
+	}
+	catch (e) {
+		nodecg.log.error('Error with mumble: ' + e);
+	}
 };
