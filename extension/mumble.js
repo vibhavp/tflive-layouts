@@ -37,9 +37,9 @@ module.exports = function (nodecg) {
 
 	function connectMumble() {
 		mumble.connect(mumbleAddr.value + ':' + mumblePort.value, {}, (error, connection) => {
-			function makePlayerList() {
-				const userList = [];
+			const userList = [];
 
+			function makePlayerList() {
 				for (const user of connection.users()) {
 					if (user.name !== mumbleBotName.value && !isRole(user.name) && mumbleFilteredNames.value.indexOf(user.name) === -1) {
 						userList.push(user.name);
@@ -74,10 +74,29 @@ module.exports = function (nodecg) {
 				}
 			});
 
+			connection.on('user-connect', (user) => {
+				const listIndex = userList.indexOf(user.name);
+				if (user.name !== mumbleBotName.value && !isRole(user.name) && mumbleFilteredNames.value.indexOf(user.name) === -1) {
+					userList.push(user.name);
+				} else if (listIndex !== -1){
+					userList.splice(listIndex, 1);
+				}
+
+				mumblePlayerList.value = userList;
+			});
+
+			connection.on('user-disconnect', (user) => {
+				const listIndex = userList.indexOf(user.name);
+
+				if (listIndex !== -1) {
+					userList.splice(listIndex, 1);
+				}
+				mumblePlayerList.value = userList;
+			});
+
 			connection.on('voice-start', setVoiceStatus(true));
 			connection.on('voice-end', setVoiceStatus(false));
 			connection.on('user-move', makePlayerList);
-			connection.on('user-connect', makePlayerList);
 			nodecg.listenFor('mumble_refresh_players', makePlayerList);
 			connection.authenticate(mumbleBotName.value, pwd);
 		});
