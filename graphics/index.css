@@ -59,10 +59,12 @@ body {
 	display: flex;
 	flex-direction: column;
 	position: absolute;
-	left: 47%;
-	bottom: 47%;
 	width: auto;
 	padding: 20px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%); /* Yep! */
 }
 
 .mumble-player {
@@ -72,6 +74,15 @@ body {
 	font-family: 'Roboto', sans-serif;
 	font-weight: 500;
 	font-size: 25px;
+}
+
+.mumble-player:before {
+	display: inline-block;
+	font: normal normal normal 25px/1 FontAwesome, sans-serif;
+	font-size: inherit;
+	text-rendering: auto;
+	vertical-align: inherit;
+	content: '\f007';
 }
 
 #music {

@@ -151,10 +151,10 @@
 		}
 
 		$('#mumble').empty();
-
+		console.log(players);
 		for (const player of players) {
 			const name = player;
-			const span = $('<span class="mumble-player"><i class="fa fa-user" aria-hidden="true"></i>' + name + '</span>');
+			const span = $('<span class="mumble-player">' + name + '</span>');
 			span.attr('id', 'mumble-player-' + name);
 			$('#mumble').append(span);
 		}
