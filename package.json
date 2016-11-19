@@ -44,7 +44,7 @@
       {
         "name": "mumble",
         "title": "Mumble",
-        "width": 2,
+        "width": 3,
         "file": "mumble.html",
         "headerColor": "#9f9bbd"
       },

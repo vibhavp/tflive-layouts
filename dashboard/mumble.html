@@ -2,6 +2,7 @@
 <html lang="en">
 	<head>
 		<link rel="import" href="components/nodecg-replicant-input/nodecg-replicant-input.html">
+		<link rel="import" href="components/iron-flex-layout/classes/iron-flex-layout.html">
 		<link rel="import" href="components/iron-icons/iron-icons.html">
 		<link rel="import" href="components/nodecg-toast/nodecg-toast.html">
 		<link rel="import" href="components/paper-button/paper-button.html">
@@ -12,16 +13,29 @@
 		<link rel="stylesheet" type="text/css" href="mumble.css">
 	</head>
 	<body>
-		<paper-toggle-button id="show-mumble">Show Mumble Overlay</paper-toggle-button>
-		<nodecg-replicant-input label="Mumble Address" replicant-name="mumble_addr"></nodecg-replicant-input>
-		<nodecg-replicant-input label="Mumble Port" replicant-name="mumble_port"></nodecg-replicant-input>
-		<nodecg-replicant-input label="Mumble Password" replicant-name="mumble_pwd"></nodecg-replicant-input>
+		<div class="layout horizontal">
+			<paper-toggle-button id="show-mumble">Show Mumble Overlay</paper-toggle-button>
+			<paper-toggle-button id="show-caster-voice">Show Caster Voice Activity</paper-toggle-button>
+		</div>
+		<paper-button id="refresh-mumble" raised>Refresh Player List</paper-button>
+
+		<div class="layout horizontal">
+			<nodecg-replicant-input label="Mumble Address" replicant-name="mumble_addr"></nodecg-replicant-input>
+			:
+			<nodecg-replicant-input label="Mumble Port" replicant-name="mumble_port"></nodecg-replicant-input>
+		</div>
+
+		<nodecg-replicant-input label="Mumble Password" type="password" replicant-name="mumble_pwd"></nodecg-replicant-input>
 		<nodecg-replicant-input label="Mumble Bot Name" replicant-name="mumble_bot_name"></nodecg-replicant-input>
 		<nodecg-replicant-input label="Mumble Channel" replicant-name="mumble_channel"></nodecg-replicant-input>
-		<paper-button id="connect-mumble" raised>Connect to Mumble</paper-button>
+
+		<div class="layout horizontal">
+			<paper-button id="connect-mumble" raised>Connect</paper-button>
+			<paper-button id="disconnect-mumble" raised>Disconnect</paper-button>
+			<paper-button id="add-name" raised>Filter Name</paper-button>
+		</div>
+
 		<nodecg-toast text="Connected to Mumble!"></nodecg-toast>
-		<paper-button id="add-name" raised>Add Filtered Name</paper-button>
-		<paper-button id="refresh-mumble" raised>Refresh Player List</paper-button>
 		<div id="mumble-filter">
 		</div>
 		<script src="mumble.js"></script>
