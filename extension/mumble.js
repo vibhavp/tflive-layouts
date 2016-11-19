@@ -13,11 +13,12 @@ module.exports = function (nodecg) {
 	const mumblePlayerList = new nodecg.Replicant('mumble_player_list', 'tflive-pregame', {persistent: false});
 	const mumbleFilteredNames = new nodecg.Replicant('filtered_mumble_names', 'tflive-pregame', {defaultValue: []});
 	const roles = new nodecg.Replicant('roles', 'tflive-pregame');
+	const showCasterVoice = new nodecg.Replicant('show_caster_voice', 'tflive-pregame', {defaultValue: true});
 
 	function setVoiceStatus(status) {
 		return function (user) {
 			const talkingRole = isRole(user.name);
-			if (talkingRole) {
+			if (talkingRole && showCasterVoice.value) {
 				nodecg.sendMessage('mumble_status', {role: talkingRole, active: status});
 			} else {
 				nodecg.sendMessage('mumble_status', {name: user.name, active: status});
@@ -34,6 +35,8 @@ module.exports = function (nodecg) {
 
 		return null;
 	}
+
+	let currConnection;
 
 	function connectMumble() {
 		mumble.connect(mumbleAddr.value + ':' + mumblePort.value, {}, (error, connection) => {
@@ -101,8 +104,16 @@ module.exports = function (nodecg) {
 				makePlayerList();
 			});
 			connection.authenticate(mumbleBotName.value, pwd);
+			currConnection = connection;
 		});
 	}
+
+	nodecg.listenFor('mumble_disconnect', () => {
+		if (currConnection){
+			currConnection.disconnect();
+		}
+		mumbleConnected.value = false;
+	});
 
 	try {
 		nodecg.listenFor('mumble_connect', connectMumble);

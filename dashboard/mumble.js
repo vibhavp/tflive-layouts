@@ -9,12 +9,21 @@
 	});
 
 	const showMumbleOverlay = new nodecg.Replicant('show_mumble_overlay', 'tflive-pregame', {defaultValue: false});
-	const nodeToggled = $('#show-mumble');
-	nodeToggled.on('change', () => {
-		showMumbleOverlay.value = nodeToggled[0].active;
+	const showCasterVoice = new nodecg.Replicant('show_caster_voice', 'tflive-pregame', {defaultValue: true});
+	const showMumbleToggle = $('#show-mumble');
+	showMumbleToggle.on('change', () => {
+		showMumbleOverlay.value = showMumbleToggle[0].active;
 	});
 	showMumbleOverlay.on('change', value => {
-		nodeToggled[0].active = value;
+		showMumbleToggle[0].active = value;
+	});
+	const casterVoiceToggle = $('#show-caster-voice');
+
+	casterVoiceToggle.on('change', () => {
+		showCasterVoice.value = casterVoiceToggle[0].active;
+	});
+	showCasterVoice.on('change', value => {
+		casterVoiceToggle[0].active = value;
 	});
 
 	const filteredMumbleNames = new nodecg.Replicant('filtered_mumble_names', 'tflive-pregame', {defaultValue: []});
@@ -30,7 +39,6 @@
 			input[0].value = name;
 		}
 		const remove = $('<paper-icon-button icon="remove" title="Remove"></paper-icon-button>');
-		remove.css('padding-left', '5%');
 		remove.on('click', () => {
 			input.detach();
 			remove.detach();
@@ -57,14 +65,23 @@
 	});
 
 	const mumbleConnected = new nodecg.Replicant('mumble_connected', 'tflive-pregame', {persistent: false, defaultValue: false});
+	const disconnectMumbleButton = $('#disconnect-mumble');
 
 	mumbleConnected.on('change', (value) => {
 		if (value) {
+			console.log('connected to mumble');
+			disconnectMumbleButton.show();
 			$('nodecg-toast')[0].show();
-			$('#connect-mumble').text('Reconnect to Mumble!');
+			$('#connect-mumble').text('Reconnect');
 		} else {
-			$('#connect-mumble').text('Connect to Mumble!');
+			console.log('disconnected from mumble');
+			disconnectMumbleButton.hide();
+			$('#connect-mumble').text('Connect');
 		}
+	});
+
+	disconnectMumbleButton.on('click', () => {
+		nodecg.sendMessage('mumble_disconnect');
 	});
 
 	$('#refresh-mumble').on('click', () => {

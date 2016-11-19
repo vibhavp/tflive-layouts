@@ -125,6 +125,7 @@
 		}
 	});
 
+	const showCasterVoice = new nodecg.Replicant('show_caster_voice', 'tflive-pregame');
 	nodecg.listenFor('mumble_status', data => {
 		if (data.role) {
 			const role = data.role;
@@ -151,7 +152,6 @@
 		}
 
 		$('#mumble').empty();
-		console.log(players);
 		for (const player of players) {
 			const name = player;
 			const span = $('<span class="mumble-player">' + name + '</span>');
