@@ -7,11 +7,9 @@
 		let str = '';
 		let i;
 		for (i in maps) {
-			if ({}.hasOwnProperty.call(maps, i)) {
-				str += maps[i].map;
-				if (i != maps.length - 1) {
-					str += ' · ';
-				}
+			str += maps[i].map;
+			if (parseInt(i, 10) != maps.length - 1) {
+				str += ' · ';
 			}
 		}
 
@@ -48,13 +46,13 @@
 				return;
 			}
 
-			if (show_all_maps) {
+			if (show_all_maps) { // show all maps
 				show_all_maps = false;
 				show_stage = true;
 				mapsDiv.fadeOut(() => {
 					mapsDiv.text(makeMapText(maps));
 				}).fadeIn();
-			} else if (show_stage) {
+			} else if (show_stage) { // show stage
 				nodecg.readReplicant('stage', 'tflive-pregame', stage => {
 					if (stage && stage.trim() !== '') {
 						mapsDiv.fadeOut(() => {
@@ -63,11 +61,24 @@
 					}
 				});
 				show_stage = false;
-			} else {
-				const curMap = maps[cur_map_index++];
+			} else { // show single map
+				let curMap = maps[cur_map_index];
+
+				while (!curMap.show) {
+					if (cur_map_index === maps.length) {
+						show_all_maps = true;
+						cur_map_index = 0;
+						setTimeout(setMaps, 5000);
+						return;
+					}
+
+					curMap = maps[cur_map_index++];
+				}
+
 				mapsDiv.fadeOut(() => {
 					mapsDiv.text(curMap.map + ' ' + curMap.team2Score + '-' + curMap.team1Score + ' ' + winner(curMap));
 				}).fadeIn();
+				cur_map_index++;
 
 				if (cur_map_index === maps.length) {
 					show_all_maps = true;

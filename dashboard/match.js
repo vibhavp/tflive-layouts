@@ -28,6 +28,7 @@
 				const mapItem = $('<div class="map" id="map' + i + '"></div>');
 				const mapName = $('<paper-input></paper-input>');
 				const current = $('<paper-radio-button>Current</paper-radio-button>');
+				const show = $('<paper-checkbox>Show</paper-checkbox>');
 				current.attr('style', 'padding-left: 2px;');
 				current.attr('id', i);
 
@@ -43,7 +44,7 @@
 				team2Score[0].value = team1Score[0].value = 0;
 
 				const onChange = () => {
-					maps.value[i] = {map: mapName[0].value, team1Score: team1Score[0].value, team2Score: team2Score[0].value, current: current[0].checked};
+					maps.value[i] = {map: mapName[0].value, team1Score: team1Score[0].value, team2Score: team2Score[0].value, current: current[0].checked, show: show[0].checked};
 
 					if (current[0].checked) {
 						const boxes = document.getElementsByTagName('paper-radio-button');
@@ -68,6 +69,7 @@
 				$(team1Score).on('change', onChange);
 				$(team2Score).on('change', onChange);
 				$(current).on('change', onChange);
+				$(show).on('change', onChange);
 
 				team1Score[0].value = 0;
 				team2Score[0].value = 0;
@@ -77,9 +79,10 @@
 					team1Score[0].value = mapList[i].team1Score;
 					team2Score[0].value = mapList[i].team2Score;
 					current[0].checked = mapList[i].current;
+					show[0].checked = mapList[i].show;
 				}
 
-				$(mapItem).append(mapName, team2Score, team1Score, current);
+				$(mapItem).append(mapName, team2Score, team1Score, current, show);
 				$(div).append(mapItem);
 			}
 		}

@@ -14,9 +14,7 @@ body {
 	flex-direction: row;
 	justify-content: center;
 	align-content: space-between;
-	align-items: baseline;
-	padding-top: 46px;
-	padding-bottom: 46px;
+	padding: 20px 5px;
 
 	font-family: 'Roboto', sans-serif;
 	font-weight: 900;
@@ -38,16 +36,23 @@ body {
 }
 
 #maps {
+	text-align: center;
+	padding: 8px 5px;
+	position: relative;
+	top: 5px;
+	left: 38%;
+	min-width: 450px;
+
+	background-color: rgb(42,39,37);
+
 	font-family: 'Roboto', sans-serif;
-	font-size: 20px;
+	font-size: 24px;
 	font-weight: 500;
 	color: white;
 	text-transform: uppercase;
 
-	position: relative;
-	top: 15px;
+	tranform: translate(-40%);
 
-	background-color: rgb(42,39,37);
 	width: auto;
 	display: inline-block;
 	padding: 10px;
@@ -136,6 +141,39 @@ body {
 
 	padding-top: 20px;
 	padding-left: 11px;
+}
+
+.caster .profile-info:before {
+	display: block;
+	content: url(img/icons/mic.png);
+	position: relative;
+	right: 126px;
+	bottom: 30px;
+	height: 1px;
+	width: 1px;
+	transform: scale(.4);
+}
+
+.analyst .profile-info:before {
+	display: block;
+	content: url(img/icons/mic-bowtie.png);
+	position: relative;
+	right: 126px;
+	bottom: 30px;
+	height: 1px;
+	width: 1px;
+	transform: scale(.4);
+}
+
+.camera .profile-info:before {
+	display: block;
+	content: url(img/icons/camera.png);
+	position: relative;
+	right: 126px;
+	bottom: 30px;
+	height: 1px;
+	width: 1px;
+	transform: scale(.4);
 }
 
 .twitter {
