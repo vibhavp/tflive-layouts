@@ -159,6 +159,11 @@
 
 	topTimerText.on('change', value => {
 		if (value.enabled) {
+			if (value.hideMaps) {
+				$('#maps').fadeOut();
+			} else {
+				$('#maps').show();
+			}
 			$('#timer').addClass('fill').find('.text').text(value.text);
 		} else {
 			$('#timer').removeClass('fill').find('.text').text('');

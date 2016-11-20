@@ -23,6 +23,7 @@
 			customText.value.enabled = (name !== 'none');
 			customText.value.name = $(item).attr('name');
 			customText.value.text = $(item).data('text');
+			customText.value.hideMaps = $(item).data('hide-maps');
 		}
 	});
 
