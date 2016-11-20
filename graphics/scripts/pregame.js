@@ -1,7 +1,7 @@
 (function () {
 	const nodecg = window.nodecg;
-	const team1 = new nodecg.Replicant('team1', 'tflive-pregame');
-	const team2 = new nodecg.Replicant('team2', 'tflive-pregame');
+	const team1 = new nodecg.Replicant('team1', 'tflive-layouts');
+	const team2 = new nodecg.Replicant('team2', 'tflive-layouts');
 
 	function makeMapText(maps) {
 		let str = '';
@@ -33,9 +33,9 @@
 	function setMaps() {
 		const mapsDiv = $('#text', '#maps');
 
-		nodecg.readReplicant('maps', 'tflive-pregame', maps => {
+		nodecg.readReplicant('maps', 'tflive-layouts', maps => {
 			if (maps && maps.length === 0) {
-				nodecg.readReplicant('stage', 'tflive-pregame', stage => {
+				nodecg.readReplicant('stage', 'tflive-layouts', stage => {
 					if (stage && stage.trim() !== '') {
 						mapsDiv.fadeOut(() => {
 							mapsDiv.text(stage);
@@ -53,7 +53,7 @@
 					mapsDiv.text(makeMapText(maps));
 				}).fadeIn();
 			} else if (show_stage) { // show stage
-				nodecg.readReplicant('stage', 'tflive-pregame', stage => {
+				nodecg.readReplicant('stage', 'tflive-layouts', stage => {
 					if (stage && stage.trim() !== '') {
 						mapsDiv.fadeOut(() => {
 							mapsDiv.text(stage);
@@ -105,7 +105,7 @@
 	team2.on('change', changeTeam('blu'));
 	setMaps();
 
-	const roles = new window.nodecg.Replicant('roles', 'tflive-pregame');
+	const roles = new window.nodecg.Replicant('roles', 'tflive-layouts');
 	let timer;
 
 	roles.on('change', values => {
@@ -136,7 +136,7 @@
 		}
 	});
 
-	const showCasterVoice = new nodecg.Replicant('show_caster_voice', 'tflive-pregame');
+	const showCasterVoice = new nodecg.Replicant('show_caster_voice', 'tflive-layouts');
 	nodecg.listenFor('mumble_status', data => {
 		if (data.role) {
 			const role = data.role;
@@ -156,7 +156,7 @@
 		}
 	});
 
-	const mumbleUserList = new nodecg.Replicant('mumble_player_list', 'tflive-pregame');
+	const mumbleUserList = new nodecg.Replicant('mumble_player_list', 'tflive-layouts');
 	mumbleUserList.on('change', players => {
 		if (!players) {
 			return;
@@ -171,7 +171,7 @@
 		}
 	});
 
-	const showMumbleOverlay = new nodecg.Replicant('show_mumble_overlay', 'tflive-pregame');
+	const showMumbleOverlay = new nodecg.Replicant('show_mumble_overlay', 'tflive-layouts');
 	showMumbleOverlay.on('change', show => {
 		if (show) {
 			$('#mumble').css('visibility', 'visible');
@@ -181,7 +181,7 @@
 		}
 	});
 
-	const showNowPlaying = new nodecg.Replicant('show_now_playing', 'tflive-pregame');
+	const showNowPlaying = new nodecg.Replicant('show_now_playing', 'tflive-layouts');
 	showNowPlaying.on('change', show => {
 		if (show) {
 			$('#music').show();
@@ -193,7 +193,7 @@
 		$('#text', '#music').text(song);
 	};
 
-	const now_playing = new nodecg.Replicant('now_playing', 'tflive-pregame');
+	const now_playing = new nodecg.Replicant('now_playing', 'tflive-layouts');
 	now_playing.on('change', change_song);
-	nodecg.readReplicant('now_playing', 'tflive-pregame', change_song);
+	nodecg.readReplicant('now_playing', 'tflive-layouts', change_song);
 })();

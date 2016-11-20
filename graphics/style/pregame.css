@@ -145,7 +145,7 @@ body {
 
 .caster .profile-info:before {
 	display: block;
-	content: url(img/icons/mic.png);
+	content: url(../img/icons/mic.png);
 	position: relative;
 	right: 126px;
 	bottom: 30px;
@@ -156,7 +156,7 @@ body {
 
 .analyst .profile-info:before {
 	display: block;
-	content: url(img/icons/mic-bowtie.png);
+	content: url(../img/icons/mic-bowtie.png);
 	position: relative;
 	right: 126px;
 	bottom: 30px;
@@ -167,7 +167,7 @@ body {
 
 .camera .profile-info:before {
 	display: block;
-	content: url(img/icons/camera.png);
+	content: url(../img/icons/camera.png);
 	position: relative;
 	right: 126px;
 	bottom: 30px;

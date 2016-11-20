@@ -8,8 +8,8 @@
 		nodecg.sendMessage('mumble_connect');
 	});
 
-	const showMumbleOverlay = new nodecg.Replicant('show_mumble_overlay', 'tflive-pregame', {defaultValue: false});
-	const showCasterVoice = new nodecg.Replicant('show_caster_voice', 'tflive-pregame', {defaultValue: true});
+	const showMumbleOverlay = new nodecg.Replicant('show_mumble_overlay', 'tflive-layouts', {defaultValue: false});
+	const showCasterVoice = new nodecg.Replicant('show_caster_voice', 'tflive-layouts', {defaultValue: true});
 	const showMumbleToggle = $('#show-mumble');
 	showMumbleToggle.on('change', () => {
 		showMumbleOverlay.value = showMumbleToggle[0].active;
@@ -26,7 +26,7 @@
 		casterVoiceToggle[0].active = value;
 	});
 
-	const filteredMumbleNames = new nodecg.Replicant('filtered_mumble_names', 'tflive-pregame', {defaultValue: []});
+	const filteredMumbleNames = new nodecg.Replicant('filtered_mumble_names', 'tflive-layouts', {defaultValue: []});
 
 	function newInput(index, name) {
 		const input = $('<paper-input></paper-input>');
@@ -64,7 +64,7 @@
 		}
 	});
 
-	const mumbleConnected = new nodecg.Replicant('mumble_connected', 'tflive-pregame', {persistent: false, defaultValue: false});
+	const mumbleConnected = new nodecg.Replicant('mumble_connected', 'tflive-layouts', {persistent: false, defaultValue: false});
 	const disconnectMumbleButton = $('#disconnect-mumble');
 
 	mumbleConnected.on('change', (value) => {

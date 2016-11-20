@@ -1,5 +1,5 @@
 {
-  "name": "tflive-pregame",
+  "name": "tflive-layouts",
   "version": "0.0.0",
   "description": "tflive description",
   "homepage": "",
@@ -54,23 +54,25 @@
         "width": 3,
         "file": "music.html",
         "headerColor": "#9f9bbd"
+      },
+      {
+        "name": "game-status",
+        "title": "Match status",
+        "width": 2,
+        "file": "match-status.html",
+        "headerColor": "#9f9bbd"
       }
     ],
     "graphics": [
       {
-        "file": "index.html",
-        "width": 1280,
-        "height": 720
-      }
-    ],
-    "assetCategories": [
+        "file": "pregame.html",
+        "width": 1902,
+        "height": 1080
+      },
       {
-        "name": "maps",
-        "title": "Maps",
-        "allowedTypes": [
-          "png",
-          "webm"
-        ]
+        "file": "ingame.html",
+        "width": 1902,
+        "height": 1080
       }
     ]
   },

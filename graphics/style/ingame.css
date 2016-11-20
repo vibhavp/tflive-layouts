@@ -1,0 +1,266 @@
+html {
+	width: 100%;
+	height: 100%;
+	font-family: 'Roboto', sans-serif;
+	font-size: 10px;
+	line-height: 1;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+*, *:before, *:after {
+	-webkit-transform-style: preserve-3d;
+	-moz-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+	-webkit-font-smoothing: antialiased;
+	-webkit-box-sizing: inherit;
+	-moz-box-sizing: inherit;
+	box-sizing: inherit;
+}
+
+body {
+	margin: 0;
+	overflow: hidden;
+	width: 100%;
+	height: 100%;
+	font-family: 'Roboto', sans-serif;
+	image-rendering: optimizeQuality;
+	image-rendering: auto;
+	-ms-interpolation-mode: nearest-neighbor;
+}
+
+#upper {
+	width: 100%;
+	height: 90px;
+
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-content: space-between;
+
+	font-weight: 900;
+	font-size: 50px;
+	line-height: 1;
+	color: white;
+}
+
+#scores {
+	width: 100%;
+	font-weight: 900;
+	line-height: 1;
+	color: white;
+}
+
+.team {
+	display: inline-block;
+	min-width: 40%;
+	padding: 20px 5px;
+	white-space: nowrap;
+	flex-direction: row;
+	justify-content: space-around;
+	align-content: space-around;
+}
+
+#blu {
+	text-align: right;
+	background-image: linear-gradient(to left, rgb(42,39,37) 60%, rgba(46,43,42, 0.71) 80%, transparent 100%);
+}
+#blu .name {
+	color: #49ACDF;
+}
+#blu .score {
+	margin-left: 5px;
+}
+
+#red {
+	text-align: left;
+	background-image: linear-gradient(to right, rgb(42,39,37) 60%, rgba(46,43,42, 0.71) 80%, transparent 100%);
+}
+#red .name {
+	color: #DC4C4A;
+}
+#red .score {
+	margin-right: 5px;
+}
+
+.score {
+	display: inline-block;
+	color: white;
+	font-weight: 400;
+	text-align: center;
+	width: 50px;
+}
+
+/* Toggle .team-logos on #upper to show logos */
+.team-logos .logo {
+	display: inline-block;
+}
+.logo {
+	display: none;
+	position: relative;
+	text-align: center;
+	vertical-align: top;
+	z-index: 1;
+	width: 50px;
+	height: 50px;
+	font-size: 30px;
+	line-height: 50px;
+	font-weight: 500;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+/* Fill #team .logo with an <img> for avatars to show up */
+.logo img {
+	max-width: 100%;
+	max-height: 100%;
+	border: 0;
+	vertical-align: top;
+}
+
+/* Default ? for unavailable avatar */
+.logo:empty:before {
+	position: absolute;
+	content: '?';
+	line-height: 50px;
+	vertical-align: top;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	z-index: -2;
+	background-color: #313131;
+	border: 1px dotted rgba(80,80,80,.5);
+}
+
+/* Empty space in between team/scores */
+#timer {
+	text-align: center;
+	width: 268px;
+	font-size: 28px;
+	font-weight: 500;
+	line-height: 0.96;
+	white-space: normal;
+	vertical-align: middle;
+	height: 100%;
+}
+#timer:before {
+	display: inline-block;
+	height: 100%;
+	vertical-align: middle;
+	content: '';
+	font-size: 0px;
+}
+#timer .text {
+	display: inline-block;
+	vertical-align: middle;
+}
+#timer.fill {
+	background-color: rgb(42,39,37);
+}
+
+/* Maps (info & previous scores) centered beneath timers */
+#maps {
+	text-align: center;
+	padding: 8px 5px;
+	position: relative;
+	top: 5px;
+	left: 50%;
+	min-width: 450px;
+	transform: translateX(-50%);
+
+	background-color: rgba(46,43,42, 0.71);
+
+	font-family: 'Roboto', sans-serif;
+	font-size: 24px;
+	color: white;
+	font-weight: 500;
+
+	text-transform: uppercase;
+
+	display: inline-block;
+}
+
+#maps:before, #maps:after {
+	content: '';
+	display: inline-block;
+	vertical-align: top;
+	width: 40px;
+	height: 100%;
+	position: absolute;
+	top: 0;
+}
+#maps:before {
+	background-image: linear-gradient(to left, rgba(42,39,37, 0.71) 20%, rgba(46,43,42, 0.71) 40%, transparent 100%);
+	right: 100%;
+}
+#maps:after {
+	background-image: linear-gradient(to right, rgba(42,39,37, 0.71) 20%, rgba(46,43,42, 0.71) 40%, transparent 100%);
+	left: 100%;
+}
+
+#maps:empty {
+	display: none;
+}
+
+/* Game Pause info | .timer contains timer */
+#pause-info {
+	background-color: rgba(46,43,42, 0.71);
+	color: white;
+	font-weight: 900;
+
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -25px;
+	text-transform: uppercase;
+	transform: translateX(-50%);
+	padding: 10px 15px;
+	font-size: 30px;
+
+	display: none;
+}
+
+.social-link:before {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome, sans-serif;
+  font-size: inherit;
+  text-rendering: auto;
+  transform: translate(0, 0);
+  vertical-align: inherit;
+}
+
+#social-links {
+	width: 250px;
+	margin: -50px auto 0;
+	position: relative;
+	top: 44.9%;
+	right: 1%;
+	display: block;
+	color: #EFEFEF;
+	text-align: center;
+	line-height: 50px;
+	list-style: none;
+	padding: 0.25em;
+	background-color: rgba(46,43,42, 0.71);
+	text-shadow: 2px 2px 1px rgba(46,43,42, 0.71);
+	vertical-align: top;
+}
+.social-link {
+	display: inline-block;
+	padding: 0.25em;
+	vertical-align: top;
+}
+.social-link:before {
+	float: left;
+	font-size: 50px;
+}
+.social-linktext {
+	margin: 0;
+	font-size: 35px;
+	line-height: 40px;
+	font-weight: 500;
+}
+
+.twitch:before { content: '\f1e8'; }
+.twitter:before { content: '\f099'; }
+.youtube:before { content: '\f167'; }

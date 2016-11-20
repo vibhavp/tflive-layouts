@@ -3,17 +3,17 @@
 const mumble = require('mumble');
 
 module.exports = function (nodecg) {
-	const mumbleAddr = new nodecg.Replicant('mumble_addr', 'tflive-pregame');
-	const mumblePort = new nodecg.Replicant('mumble_port', 'tflive-pregame');
-	const mumblePwd = new nodecg.Replicant('mumble_pwd', 'tflive-pregame');
-	const mumbleBotName = new nodecg.Replicant('mumble_bot_name', 'tflive-pregame');
-	const mumbleChannel = new nodecg.Replicant('mumble_channel', 'tflive-pregame');
-	const mumbleConnected = new nodecg.Replicant('mumble_connected', 'tflive-pregame', {persistent: false, defaultValue: false});
+	const mumbleAddr = new nodecg.Replicant('mumble_addr', 'tflive-layouts');
+	const mumblePort = new nodecg.Replicant('mumble_port', 'tflive-layouts');
+	const mumblePwd = new nodecg.Replicant('mumble_pwd', 'tflive-layouts');
+	const mumbleBotName = new nodecg.Replicant('mumble_bot_name', 'tflive-layouts');
+	const mumbleChannel = new nodecg.Replicant('mumble_channel', 'tflive-layouts');
+	const mumbleConnected = new nodecg.Replicant('mumble_connected', 'tflive-layouts', {persistent: false, defaultValue: false});
 
-	const mumblePlayerList = new nodecg.Replicant('mumble_player_list', 'tflive-pregame', {persistent: false});
-	const mumbleFilteredNames = new nodecg.Replicant('filtered_mumble_names', 'tflive-pregame', {defaultValue: []});
-	const roles = new nodecg.Replicant('roles', 'tflive-pregame');
-	const showCasterVoice = new nodecg.Replicant('show_caster_voice', 'tflive-pregame', {defaultValue: true});
+	const mumblePlayerList = new nodecg.Replicant('mumble_player_list', 'tflive-layouts', {persistent: false});
+	const mumbleFilteredNames = new nodecg.Replicant('filtered_mumble_names', 'tflive-layouts', {defaultValue: []});
+	const roles = new nodecg.Replicant('roles', 'tflive-layouts');
+	const showCasterVoice = new nodecg.Replicant('show_caster_voice', 'tflive-layouts', {defaultValue: true});
 
 	function setVoiceStatus(status) {
 		return function (user) {

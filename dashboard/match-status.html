@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<link rel="import" href="components/paper-radio-button/paper-radio-button.html">
+		<link rel="import" href="components/paper-radio-group/paper-radio-group.html">
+		<link rel="import" href="components/paper-input/paper-input.html">
+		<script src="components/jquery/dist/jquery.min.js"></script>
+		<link rel="import" href="components/iron-flex-layout/classes/iron-flex-layout.html">
+	</head>
+	<body>
+		<paper-radio-group class="layout vertical" id="radio-group" selected="none">
+			<paper-radio-button name="none">None</paper-radio-button>
+			<paper-radio-button data-replicant="paused" data-text="Game Paused" name="paused">Game Paused</paper-radio-button>
+			<paper-radio-button data-replicant="waiting" data-text="Waiting For Players" name="waiting">Waiting For Players</paper-radio-button>
+			<paper-radio-button data-replicant="waiting-stv" data-text="Waiting for STV" name="waiting-stv">Waiting for STV</paper-radio-button>
+			<paper-radio-button data-replicant="logs" data-text="Logs" name="logs">Showing Logs</paper-radio-button>
+			<paper-radio-button id="custom" data-replicant="custom" data-text="" name="custom">Custom</paper-radio-button>
+			<paper-input label="Custom Text" id="custom-text"></paper-input>
+		</paper-radio-group>
+		<script src="match-status.js"></script>
+	</body>
+</html>
