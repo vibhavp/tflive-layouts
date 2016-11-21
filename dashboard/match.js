@@ -44,7 +44,11 @@
 				team2Score[0].value = team1Score[0].value = 0;
 
 				const onChange = () => {
-					maps.value[i] = {map: mapName[0].value, team1Score: team1Score[0].value, team2Score: team2Score[0].value, current: current[0].checked, show: show[0].checked};
+					maps.value[i] = {map: mapName[0].value,
+									 team1Score: parseInt(team1Score[0].value, 10),
+									 team2Score: parseInt(team2Score[0].value, 10),
+									 current: current[0].checked,
+									 show: show[0].checked};
 
 					if (current[0].checked) {
 						const boxes = document.getElementsByTagName('paper-radio-button');
