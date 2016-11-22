@@ -232,9 +232,9 @@ body {
 #social-links {
 	width: 250px;
 	margin: -50px auto 0;
-	position: relative;
-	top: 44.9%;
-	right: 1%;
+	position: absolute;
+	top: 57%;
+	right: 44%;
 	display: block;
 	color: #EFEFEF;
 	text-align: center;

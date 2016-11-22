@@ -22,7 +22,8 @@
 			paused.value = (name === 'paused');
 			customText.value.enabled = (name !== 'none');
 			customText.value.name = $(item).attr('name');
-			customText.value.text = $(item).data('text');
+			customText.value.text = $(item).data('text') || '';
+			customText.value.matchEnded = $(item).data('match-ended');
 			customText.value.hideMaps = $(item).data('hide-maps');
 		}
 	});

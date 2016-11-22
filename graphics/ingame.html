@@ -23,7 +23,7 @@
 
 		</div>
 		<div id="maps">
-			<span id="text"><b>TDB</b></span>
+			<span id="text"></span>
 		</div>
 		<div id="pause-info">Match has been paused for <span class="timer">00:00</span></div>
 		<div id="social-links">
@@ -32,6 +32,12 @@
 			<span class="social-link twitter"></span>
 			<p class="social-linktext">TFLIVETV</p>
 		</div>
-		<script src="scripts/ingame.js"></script>
+		<script src="app/lib/require.js"></script>
+		<script>
+			requirejs.config({
+				baseUrl: './app',
+			});
+		</script>
+		<script src="app/ingame/main.js"></script>
 	</body>
 </html>
