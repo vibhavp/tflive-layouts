@@ -22,8 +22,8 @@
 			});
 		});
 
-		const paused = nodecg.Replicant('paused', 'tflive-layouts', {defaultValue: false});
-		const pausedTime = nodecg.Replicant('paused_time', 'tflive-layouts');
+		const paused = new nodecg.Replicant('paused', 'tflive-layouts', {defaultValue: false});
+		const pausedTime = new nodecg.Replicant('paused_time', 'tflive-layouts');
 		let timer;
 
 		function pad(t) {
