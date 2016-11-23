@@ -59,7 +59,7 @@ define(['globals'], function(globals) {
 		} else { // show a single map
 			let curMap = globals.maps[curMapIndex];
 			while (!curMap.show) {
-				if (curMapIndex === globals.maps.length) {
+				if (curMapIndex >= globals.maps.length) {
 					reset();
 					return;
 				}
@@ -68,7 +68,7 @@ define(['globals'], function(globals) {
 
 			setMapsText(mapsTextSpan, singleMapText(curMap));
 			curMapIndex++;
-			if (curMapIndex === globals.maps.length) {
+			if (curMapIndex >= globals.maps.length) {
 				reset();
 			}
 		}
