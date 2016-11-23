@@ -44,13 +44,6 @@ body {
 	color: white;
 }
 
-#scores {
-	width: 100%;
-	font-weight: 900;
-	line-height: 1;
-	color: white;
-}
-
 .team {
 	display: inline-block;
 	min-width: 40%;
