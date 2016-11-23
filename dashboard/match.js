@@ -115,7 +115,6 @@
 				mapsInfo[i].team2Score = tmp;
 			}
 
-
 			maps.value = mapsInfo;
 			location.reload();
 		});
