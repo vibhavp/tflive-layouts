@@ -22,11 +22,21 @@ body {
 	color: white;
 }
 
+#blu::before {
+	content: url('../img/tflive-logo.png');
+	display: block;
+	height:  1px;
+	width: 1px;
+	position: relative;
+	bottom: 95px;
+	right: 600px;
+	transform: scale(0.19);
+}
+
 #tflive-logo {
-	display: none;
-	position: absolute;
-	left: 0px;
-	bottom: 82%;
+	height: 200px;
+	display: absolute;
+	top: 200px;
 }
 
 #vs {
