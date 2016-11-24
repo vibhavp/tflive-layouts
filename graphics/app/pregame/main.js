@@ -1,5 +1,5 @@
-(function() {
-	requirejs(['globals', 'teams', 'maps'], function (globals, teams, maps) {
+(function () {
+	requirejs(['globals', 'teams', 'maps'], (globals, teams, maps) => {
 		const nodecg = window.nodecg;
 
 		teams.bindReplicant(globals.team1Rep, $('#red'));
@@ -10,9 +10,7 @@
 		}, 5000);
 		maps.setMaps($('#text', '#maps'));
 
-
 		const roles = new window.nodecg.Replicant('roles', 'tflive-layouts');
-		let timer;
 
 		roles.on('change', values => {
 			for (const role in values) {
@@ -42,16 +40,14 @@
 			}
 		});
 
-		const showCasterVoice = new nodecg.Replicant('show_caster_voice', 'tflive-layouts');
 		nodecg.listenFor('mumble_status', data => {
 			if (data.role) {
-				const role = data.role;
-				const mumbleIcon = $('.active', '#' + role);
+				const role = $('#' + data.role);
 
 				if (data.active) {
-					mumbleIcon.css('visibility', 'visible');
+					role.addClass('voice-active');
 				} else {
-					mumbleIcon.css('visibility', 'hidden');
+					role.removeClass('voice-active');
 				}
 			} else { // is a player
 				const div = $('#mumble-player-' + data.name);
@@ -96,13 +92,12 @@
 				$('#music').hide();
 			}
 		});
-		const change_song = song => {
+		const changeSong = song => {
 			$('#text', '#music').text(song);
 		};
 
-		const now_playing = new nodecg.Replicant('now_playing', 'tflive-layouts');
-		now_playing.on('change', change_song);
-		nodecg.readReplicant('now_playing', 'tflive-layouts', change_song);
+		const nowPlaying = new nodecg.Replicant('now_playing', 'tflive-layouts');
+		nowPlaying.on('change', changeSong);
 
 		const topTimerText = new nodecg.Replicant('custom-timer-text', 'tflive-layouts');
 		topTimerText.on('change', value => {
@@ -118,4 +113,4 @@
 			}
 		});
 	});
-}());
+})();

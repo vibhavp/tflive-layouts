@@ -82,7 +82,7 @@ body {
 	font-size: 25px;
 }
 
-.mumble-player:before {
+.mumble-player::before {
 	display: inline-block;
 	font: normal normal normal 25px/1 FontAwesome, sans-serif;
 	font-size: inherit;
@@ -108,7 +108,7 @@ body {
 	color: white;
 }
 
-#music #text:before {
+#music #text::before {
 	display: inline;
 	padding-right: 5px;
 	font: normal normal normal 25px/1 FontAwesome, sans-serif;
@@ -153,7 +153,7 @@ body {
 	padding-left: 11px;
 }
 
-.caster .profile-info:before {
+.caster .profile-info::before {
 	display: block;
 	content: url(../img/icons/mic.png);
 	position: relative;
@@ -164,7 +164,7 @@ body {
 	transform: scale(.4);
 }
 
-.analyst .profile-info:before {
+.analyst .profile-info::before {
 	display: block;
 	content: url(../img/icons/mic-bowtie.png);
 	position: relative;
@@ -175,7 +175,7 @@ body {
 	transform: scale(.4);
 }
 
-.camera .profile-info:before {
+.camera .profile-info::before {
 	display: block;
 	content: url(../img/icons/camera.png);
 	position: relative;
@@ -184,6 +184,17 @@ body {
 	height: 1px;
 	width: 1px;
 	transform: scale(.4);
+}
+
+.voice-active  .profile-info::after {
+	display: block;
+	content: url(../img/icons/active.png);
+	height: 1px;
+	width: 1px;
+	transform: scale(.19);
+	position: relative;
+	right: 124px;
+	bottom: 87px;
 }
 
 .twitter {
