@@ -10,12 +10,13 @@
 		<script src="components/jquery/dist/jquery.min.js"></script>
 		<link rel="import" href="components/paper-toggle-button/paper-toggle-button.html">
 		<link rel="import" href="components/paper-input/paper-input.html">
+		<link rel="import" href="components/nodecg-toggle/nodecg-toggle.html">
 		<link rel="stylesheet" type="text/css" href="mumble.css">
 	</head>
 	<body>
 		<div class="layout horizontal">
-			<paper-toggle-button id="show-mumble">Show Mumble Overlay</paper-toggle-button>
-			<paper-toggle-button id="show-caster-voice">Show Caster Voice Activity</paper-toggle-button>
+			<nodecg-toggle replicant-name="show_mumble_overlay" replicant-bundle="tflive-layouts">Show Mumble Overlay</nodecg-toggle>
+			<nodecg-toggle replicant-name="show_caster_voice" replicant-bundle="tflive-layouts">Show Caster Voice Activity</nodecg-toggle>
 		</div>
 		<paper-button id="refresh-mumble" raised>Refresh Player List</paper-button>
 

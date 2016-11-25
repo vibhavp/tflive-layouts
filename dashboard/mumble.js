@@ -2,28 +2,11 @@
 	'use strict';
 
 	const nodecg = window.nodecg;
+	const connectMumbleButton = $('#connect-mumble');
 
-	$('#connect-mumble').on('click', () => {
+	connectMumbleButton.on('click', () => {
 		console.log('connecting to mumble');
 		nodecg.sendMessage('mumble_connect');
-	});
-
-	const showMumbleOverlay = new nodecg.Replicant('show_mumble_overlay', 'tflive-layouts', {defaultValue: false});
-	const showCasterVoice = new nodecg.Replicant('show_caster_voice', 'tflive-layouts', {defaultValue: true});
-	const showMumbleToggle = $('#show-mumble');
-	showMumbleToggle.on('change', () => {
-		showMumbleOverlay.value = showMumbleToggle[0].active;
-	});
-	showMumbleOverlay.on('change', value => {
-		showMumbleToggle[0].active = value;
-	});
-	const casterVoiceToggle = $('#show-caster-voice');
-
-	casterVoiceToggle.on('change', () => {
-		showCasterVoice.value = casterVoiceToggle[0].active;
-	});
-	showCasterVoice.on('change', value => {
-		casterVoiceToggle[0].active = value;
 	});
 
 	const filteredMumbleNames = new nodecg.Replicant('filtered_mumble_names', 'tflive-layouts', {defaultValue: []});
@@ -67,14 +50,16 @@
 	const mumbleConnected = new nodecg.Replicant('mumble_connected', 'tflive-layouts', {persistent: false, defaultValue: false});
 	const disconnectMumbleButton = $('#disconnect-mumble');
 
-	mumbleConnected.on('change', (value) => {
+	mumbleConnected.on('change', value => {
 		if (value) {
 			console.log('connected to mumble');
 			disconnectMumbleButton.show();
+			connectMumbleButton.hide();
 			$('nodecg-toast')[0].show();
 			$('#connect-mumble').text('Reconnect');
 		} else {
 			console.log('disconnected from mumble');
+			connectMumbleButton.show();
 			disconnectMumbleButton.hide();
 			$('#connect-mumble').text('Connect');
 		}
