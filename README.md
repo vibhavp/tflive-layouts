@@ -2,8 +2,9 @@
 On-stream [NodeCG](http://nodecg.com/) (`0.8.*`) graphics used by [TFLIVE](http://twitch.tv/tflivetv).
 
 ## Requirements
-Python 2.7, mumble (for libopus), build-essentials (or the appropriate build tools
-for you distribution).
+* Python 2.7
+* Mumble (for `libopus`)
+* `build-essentials` (or the appropriate build tools for your distribution).
 
 ## Installation
 Clone this repository inside your `bundles` folder, navigate to `tflive-layouts`,
