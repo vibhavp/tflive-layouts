@@ -60,6 +60,8 @@ body {
 }
 #blu .name {
 	color: #49ACDF;
+	position: absolute;
+	right: 9.5%;
 }
 #blu .score {
 	margin-left: 5px;
@@ -71,6 +73,9 @@ body {
 }
 #red .name {
 	color: #DC4C4A;
+	position: absolute;
+	left: 9.5%;
+
 }
 #red .score {
 	margin-right: 5px;

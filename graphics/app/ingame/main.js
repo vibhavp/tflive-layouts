@@ -1,7 +1,7 @@
 (function() {
 	'use strict';
 
-	require(['globals', 'teams', 'maps'], function (globals, teams, maps) {
+	require(['globals', 'teams', 'maps'], (globals, teams, maps) => {
 		const nodecg = window.nodecg;
 
 		teams.bindReplicant(globals.team1Rep, $('.name', '#red'));
@@ -12,11 +12,20 @@
 		}, 5000);
 		maps.setMaps($('#text', '#maps'));
 
+		function bindScore(div, score) {
+			if (parseInt(div.text(), 10) !== score) {
+				div.slideToggle(() => {
+					div.text(score);
+					div.slideToggle();
+				});
+			}
+		}
+
 		globals.mapsRep.on('change', values => {
 			values.forEach(map => {
 				if (map.current) {
-					$('.score', '#blu').text(map.team2Score);
-					$('.score', '#red').text(map.team1Score);
+					bindScore($('.score', '#blu'), map.team2Score);
+					bindScore($('.score', '#red'), map.team1Score);
 					return;
 				}
 			});
