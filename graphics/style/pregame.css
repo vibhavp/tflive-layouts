@@ -81,6 +81,7 @@ body {
 	left: 50%;
 	top: 50%;
 	transform: translate(-50%, -50%); /* Yep! */
+	box-shadow: 3px 3px 3px #888888;
 }
 
 .mumble-player {
@@ -99,6 +100,31 @@ body {
 	text-rendering: auto;
 	vertical-align: inherit;
 	content: '\f007';
+}
+
+#scores-summary table {
+	color: white;
+	background-color: rgb(42,39,37);
+	width: auto;
+	font-family: 'Roboto', sans-serif;
+	font-size: 25px;
+	font-weight: 500;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%); /* Yep! */
+	align:  top;
+	box-shadow: 3px 3px 3px #888888;
+}
+
+#scores-summary td {
+	padding: 10px;
+	text-align: center;
+}
+
+#scores-summary th {
+	font-weight: 500;
+	padding: 10px;
 }
 
 #music {
@@ -135,7 +161,7 @@ body {
 	bottom: 0%;
 
 	background-color: rgb(42,39,37);
-	box-shadow: 3px -1px 3px 3px #888888;
+	box-shadow: 3px 3px 3px #888888;
 
 	display: flex;
 	flex-direction: row;

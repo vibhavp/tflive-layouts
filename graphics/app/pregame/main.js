@@ -112,5 +112,25 @@
 				$('#lower').show();
 			}
 		});
+
+		const showMapSummaryRep = new nodecg.Replicant('show_map_summary', 'tflive-layouts');
+		const table = $('table', '#scores-summary');
+		table.fadeOut();
+		globals.mapsRep.on('change', () => {
+			table.empty();
+			table.append(maps.getScoresTable());
+		});
+
+		showMapSummaryRep.on('change', value => {
+			if (value) {
+				table.fadeIn();
+				$('#maps').fadeOut();
+				table.empty();
+				table.append(maps.getScoresTable());
+			} else {
+				table.fadeOut();
+				$('#maps').fadeIn();
+			}
+		});
 	});
 })();

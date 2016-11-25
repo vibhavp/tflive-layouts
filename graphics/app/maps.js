@@ -1,4 +1,6 @@
-define(['globals'], function(globals) {
+define(['globals'], globals => {
+	'use strict';
+
 	function makeMapText() {
 		let str = '';
 		const maps = globals.maps;
@@ -42,6 +44,10 @@ define(['globals'], function(globals) {
 		curMapIndex = 0;
 	}
 
+	function filter(map) {
+		return map.show;
+	}
+
 	function setMaps(mapsTextSpan) {
 		if (!globals.maps) {
 			return;
@@ -57,24 +63,47 @@ define(['globals'], function(globals) {
 			}
 			showStage = false;
 		} else { // show a single map
-			let curMap = globals.maps[curMapIndex];
-			while (!curMap.show) {
-				if (curMapIndex >= globals.maps.length) {
-					reset();
-					return;
-				}
-				curMap = globals.maps[curMapIndex++];
-			}
+			const filtered = globals.maps.filter(filter);
+			const curMap = filtered[curMapIndex++];
 
 			setMapsText(mapsTextSpan, singleMapText(curMap));
-			curMapIndex++;
-			if (curMapIndex >= globals.maps.length) {
+			if (curMapIndex >= filtered.length) {
 				reset();
 			}
 		}
 	}
 
+	function getScoresTable() {
+		if (!globals.maps) {
+			return;
+		}
+
+		const maps = globals.maps.filter(filter);
+		const entries = [];
+		entries.push($(`
+<thead>
+<tr>
+    <th>Map</th>
+    <th style="color: #5B7586">${globals.team2}</th>
+    <th style="color: #B13C42">${globals.team1}</th>
+</tr>
+</thead>`));
+		for (const map of maps) {
+			entries.push($(`
+<tfoot>
+<tr>
+    <td>${map.map.toUpperCase()}</td>
+    <td style="color: #5B7586">${map.team2Score}</td>
+    <td style="color: #B13C42">${map.team1Score}</td>
+</tr>
+</tfoot>`));
+		}
+
+		return entries;
+	}
+
 	return {
-		setMaps: setMaps
+		setMaps: setMaps,
+		getScoresTable: getScoresTable
 	};
 });
