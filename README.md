@@ -20,5 +20,5 @@ other purpose. To quote [GamesDoneQuick/agdq16-layouts](https://github.com/Games
 > To reiterate, please don't just download and use this bundle as-is. Build something new from it.
 
 ## Thanks
-* Wiethoofd and Shounic for helping with the design.
+* Wiethoofd and Shounic for the design + CSS.
 * Alex Van "Lange" Camp, and everyone else in the [NodeCG Gitter](https://gitter.im/nodecg/nodecg) for the help.
