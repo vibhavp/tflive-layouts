@@ -64,6 +64,9 @@ define(['globals'], globals => {
 			showStage = false;
 		} else { // show a single map
 			const filtered = globals.maps.filter(filter);
+			if (filtered.length === 0) {
+				return;
+			}
 			const curMap = filtered[curMapIndex++];
 
 			setMapsText(mapsTextSpan, singleMapText(curMap));
