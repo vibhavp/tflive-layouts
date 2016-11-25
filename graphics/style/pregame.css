@@ -22,17 +22,6 @@ body {
 	color: white;
 }
 
-#blu::before {
-	content: url('../img/tflive-logo.png');
-	display: block;
-	height:  1px;
-	width: 1px;
-	position: relative;
-	bottom: 95px;
-	right: 550px;
-	transform: scale(0.19);
-}
-
 #tflive-logo {
 	height: 200px;
 	display: absolute;
