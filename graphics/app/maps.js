@@ -95,7 +95,7 @@ define(['globals'], globals => {
 			entries.push($(`
 <tfoot>
 <tr>
-    <td>${map.map.toUpperCase()}</td>
+    <td style="text-align: left">${map.map.toUpperCase()}</td>
     <td style="color: #5B7586">${map.team2Score}</td>
     <td style="color: #B13C42">${map.team1Score}</td>
 </tr>
