@@ -1,0 +1,58 @@
+<link rel="import" href="../components/paper-input/paper-input-container.html">
+<link rel="import" href="../components/iron-input/iron-input.html">
+<link rel="import" href="../components/nodecg-replicant/nodecg-replicant.html">
+<link rel="import" href="../components/iron-flex-layout/iron-flex-layout-classes.html">
+
+<dom-module id="map-details">
+	<template>
+		<style include="iron-flex iron-flex-alignment">
+			.single-map {
+				@apply(--layout-horizontal);
+			}
+			.maps {
+				@apply(--layout-vertical)
+			}
+		</style>
+
+		<nodecg-replicant replicant-name="maps" replicant-bundle="tflive-layouts" value="{{maps}}"></nodecg-replicant>
+
+		<div class="maps">
+			<template is="dom-repeat" items="{{maps}}">
+				<div class="single-map">
+					<paper-input-container>
+						<label for="map-name-input">Map Name</label>
+						<input id="map-name-input"
+							   is="iron-input"
+							   bind-value="{{item.map::input}}">
+					</paper-input-container>
+					<div>{{item.map}}</div>
+				</div>
+			</template>
+		</div>
+
+	</template>
+
+	<script>
+		Polymer({
+			is: 'map-details',
+			properties: {
+				maps: {
+					type: Array,
+					observer: '_mapsChanged',
+					/* value: function () {
+					   return [{map: "a"}, {map: "b"}];
+					   },*/
+					notify: true
+				}
+			},
+			_mapsChanged: (n, o) => {
+				console.log(o, n);
+			},
+			behaviors: [
+				Polymer.NodeCGReplicantTargetingBehavior,
+				Polymer.IronFormElementBehavior,
+				Polymer.PaperInputBehavior
+			]
+		});
+	</script>
+</dom-module>
