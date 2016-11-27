@@ -1,20 +1,6 @@
 define(['globals'], globals => {
 	'use strict';
 
-	function makeMapText() {
-		let str = '';
-		const maps = globals.maps;
-
-		for (const i in maps) {
-			str += maps[i].map;
-			if (parseInt(i, 10) !== maps.length - 1) {
-				str += ' · ';
-			}
-		}
-
-		return str;
-	}
-
 	function winner(map) {
 		if (map.team1Score > map.team2Score) {
 			return globals.team1;
@@ -44,10 +30,6 @@ define(['globals'], globals => {
 		curMapIndex = 0;
 	}
 
-	function filter(map) {
-		return map.show;
-	}
-
 	function setMaps(mapsTextSpan) {
 		if (!globals.maps) {
 			return;
@@ -56,14 +38,14 @@ define(['globals'], globals => {
 		if (showAllMaps) {
 			showAllMaps = false;
 			showStage = true;
-			setMapsText(mapsTextSpan, makeMapText());
+			setMapsText(mapsTextSpan, globals.maps.map(map => map.map).join(' · '));
 		} else if (showStage) {
 			if (globals.stage !== '') {
 				setMapsText(mapsTextSpan, globals.stage);
 			}
 			showStage = false;
 		} else { // show a single map
-			const filtered = globals.maps.filter(filter);
+			const filtered = globals.maps.filter(m => m.show);
 			if (filtered.length === 0) {
 				return;
 			}
@@ -81,7 +63,6 @@ define(['globals'], globals => {
 			return;
 		}
 
-		const maps = globals.maps.filter(filter);
 		const entries = [];
 		entries.push($(`
 <thead>
@@ -91,16 +72,17 @@ define(['globals'], globals => {
     <th style="color: #B13C42">${globals.team1}</th>
 </tr>
 </thead>`));
-		for (const map of maps) {
+
+		globals.maps.filter(m => m.show).reverse().forEach(map => {
 			entries.push($(`
 <tfoot>
 <tr>
-    <td style="text-align: left">${map.map.toUpperCase()}</td>
-    <td style="color: #5B7586">${map.team2Score}</td>
+    <td style="text-align: left; font-weight: 500">${map.map[0].toUpperCase() + map.map.slice(1)}</td>
+    <td style="color: #5B7586;">${map.team2Score}</td>
     <td style="color: #B13C42">${map.team1Score}</td>
 </tr>
 </tfoot>`));
-		}
+		});
 
 		return entries;
 	}
