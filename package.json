@@ -81,8 +81,8 @@
   "devDependencies": {
     "eslint": "^3.5.0",
     "twitter": "^1.4.0",
-    "xo": "^0.16.0",
-    "babel-eslint": "^6.1.2"
+    "xo": "^0.17.1",
+    "babel-eslint": "^7.1.1"
   },
   "scripts": {
     "lint": "eslint --cache src/**/*.js",
