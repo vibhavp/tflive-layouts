@@ -8,7 +8,6 @@ RUN apt-get install -y \
 	build-essential
 
 COPY . ./
-RUN ls -S
 
 RUN npm install --production
 RUN bower install --allow-root
