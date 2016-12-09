@@ -11,5 +11,6 @@ COPY . ./
 
 RUN npm install --production
 RUN bower install --allow-root
+RUN rm graphics/style/pregame-maps.css
 EXPOSE 9090
 CMD ["node", "../../index.js"]
