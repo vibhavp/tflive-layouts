@@ -64,6 +64,7 @@
 					}
 
 					timer_div.slideDown();
+					globals.setCssOnce($('#social-links'), 'visibility', 'visible');
 					$('#social-links').slideDown();
 
 					timer = setInterval(() => {

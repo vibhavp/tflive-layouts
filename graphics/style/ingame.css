@@ -232,6 +232,7 @@ body {
 }
 
 #social-links {
+	visibility: hidden;
 	width: 250px;
 	margin: -50px auto 0;
 	position: absolute;
