@@ -48,7 +48,6 @@ body {
 	font-size: 24px;
 	font-weight: 500;
 	color: white;
-	text-transform: uppercase;
 
 	tranform: translate(-40%);
 
@@ -91,7 +90,7 @@ body {
 	content: '\f007';
 }
 
-#scores-summary table {
+.center-info {
 	color: white;
 	background-color: rgb(42,39,37);
 	width: auto;
@@ -116,6 +115,18 @@ body {
 	padding: 10px;
 }
 
+#team-rosters {
+	display: flex;
+	flex-direction: row;
+}
+
+.roster {
+	display: flex;
+	flex-direction: column;
+	padding: 10px;
+	text-align: center;
+}
+
 #music {
 	position: absolute;
 	bottom: 160px;
@@ -131,6 +142,10 @@ body {
 	font-weight: 500;
 	font-style: italic;
 	color: white;
+}
+
+hr {
+	width: 300px;
 }
 
 #music #text::before {
