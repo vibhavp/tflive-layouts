@@ -34,6 +34,14 @@ define(function() {
 		},
 		stageRep: {
 			value: stageRep
-		}
+		},
+
+		setCssOnce: {value: (div, prop, value) => {
+			div = $(div);
+			if (!div.data('display-set-once')) {
+				div.css(prop, value);
+				div.data('display-set-once', true);
+			}
+		}}
 	});
 });
