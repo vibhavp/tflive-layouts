@@ -68,8 +68,8 @@ define(['globals'], globals => {
 <thead>
 <tr>
     <th>Map</th>
-    <th style="color: #5B7586">${globals.team2}</th>
-    <th style="color: #B13C42">${globals.team1}</th>
+    <th style="color: #49ACDF">${globals.team2}</th>
+    <th style="color: #DC4C4A">${globals.team1}</th>
 </tr>
 </thead>`));
 
@@ -78,7 +78,7 @@ define(['globals'], globals => {
 <tfoot>
 <tr>
     <td style="text-align: left; font-weight: 500">${map.map[0].toUpperCase() + map.map.slice(1)}</td>
-    <td style="color: #5B7586;">${map.team2Score}</td>
+    <td style="color: #49ACDF">${map.team2Score}</td>
     <td style="color: #B13C42">${map.team1Score}</td>
 </tr>
 </tfoot>`));
