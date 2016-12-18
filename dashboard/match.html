@@ -14,9 +14,11 @@
 	</head>
 	<body>
 		<nodecg-toggle replicant-name="show_map_summary" replicant-bundle="tflive-layouts">Show map summary</nodecg-toggle>
+		<nodecg-toggle replicant-name="show_team_rosters" replicant-bundle="tflive-layouts">Show team rosters</nodecg-toggle>
 		<nodecg-replicant-input label="Stage" replicant-name="stage"></nodecg-replicant-input>
 		<nodecg-replicant-input label="BLU" replicant-name="team2"></nodecg-replicant-input>
 		<nodecg-replicant-input label="RED" replicant-name="team1"></nodecg-replicant-input>
+		<paper-button id="edit" class="nodecg-configure" nodecg-dialog="rosters">Set team rosters</paper-button>
 		<paper-button raised id="swap">Swap Teams</paper-button>
 		<paper-input label="Maps" id="mapno" type="number"></paper-input>
 		<div id="maps">
