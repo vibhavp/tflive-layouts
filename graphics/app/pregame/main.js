@@ -4,6 +4,8 @@
 
 		teams.bindReplicant(globals.team1Rep, $('#red'));
 		teams.bindReplicant(globals.team2Rep, $('#blu'));
+		teams.bindReplicant(globals.team1Rep, $('.team-name', '#red-roster'));
+		teams.bindReplicant(globals.team2Rep, $('.team-name', '#blu-roster'));
 
 		setInterval(() => {
 			maps.setMaps($('#text', '#maps'));
@@ -130,6 +132,35 @@
 			} else {
 				table.fadeOut();
 				$('#maps').fadeIn();
+			}
+		});
+
+		function appendPlayerName(team, name) {
+			const e = $(`<span class="player-name">${name}</span>`);
+			const div = $(`#${team}-roster`);
+			div.append(e);
+		}
+
+		const showTeamRostersRep = new nodecg.Replicant('show_team_rosters', 'tflive-layouts');
+		const teamRosters = $('#team-rosters');
+		const allClasses = ['scout1', 'scout2', 'soldier1', 'soldier2', 'demoman', 'medic'];
+		teamRosters.slideUp();
+		showTeamRostersRep.on('change', value => {
+			if (value) {
+				nodecg.readReplicant('team_rosters', 'tflive-layouts', teams => {
+					$('.player-name').remove();
+					for (const team of ['red', 'blu']) {
+						for (const className of allClasses) {
+							const name = teams[team][className];
+							if (name) {
+								appendPlayerName(team, name);
+							}
+						}
+					}
+					teamRosters.slideDown();
+				});
+			} else {
+				teamRosters.slideUp();
 			}
 		});
 	});

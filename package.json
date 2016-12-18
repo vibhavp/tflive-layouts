@@ -41,6 +41,13 @@
         "file": "match.html",
         "headerColor": "#9f9bbd"
       },
+      {"name": "rosters",
+       "title": "Rosters",
+       "width": 4,
+       "file": "rosters.html",
+       "headerColor": "#9f9bbd",
+       "dialog": true
+      },
       {
         "name": "mumble",
         "title": "Mumble",
