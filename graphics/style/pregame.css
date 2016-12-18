@@ -91,6 +91,7 @@ body {
 }
 
 .center-info {
+	visibility: hidden;
 	color: white;
 	background-color: rgb(42,39,37);
 	width: auto;
@@ -174,6 +175,7 @@ hr {
 }
 
 .profile {
+	visibility: hidden;
 	display: flex;
 	flex-direction: row;
 

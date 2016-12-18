@@ -35,6 +35,7 @@
 						twitterImg.css('visibility', 'hidden');
 					}
 
+					globals.setCssOnce(node, 'visibility', 'visible');
 					node.show();
 				} else {
 					node.hide();
@@ -125,6 +126,11 @@
 
 		showMapSummaryRep.on('change', value => {
 			if (value) {
+				// globals.setDisplayOnce($('#scores-summary'), 'block');
+				// globals.setDisplayOnce(table, 'block');
+				globals.setCssOnce(table, 'visibility', 'visible');
+				globals.setCssOnce($('#scores-summary'), 'visibility', 'visible');
+
 				table.fadeIn();
 				$('#maps').fadeOut();
 				table.empty();
@@ -145,6 +151,7 @@
 		const teamRosters = $('#team-rosters');
 		const allClasses = ['scout1', 'scout2', 'soldier1', 'soldier2', 'demoman', 'medic'];
 		teamRosters.slideUp();
+
 		showTeamRostersRep.on('change', value => {
 			if (value) {
 				nodecg.readReplicant('team_rosters', 'tflive-layouts', teams => {
@@ -157,6 +164,7 @@
 							}
 						}
 					}
+					globals.setCssOnce(teamRosters, 'visibility', 'visible');
 					teamRosters.slideDown();
 				});
 			} else {
