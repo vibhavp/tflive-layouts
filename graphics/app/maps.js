@@ -13,7 +13,7 @@ define(['globals'], globals => {
 
 	function setMapsText(mapsText, text) {
 		mapsText.fadeOut(() => {
-			mapsText.text(text);
+			mapsText.html(text);
 		}).fadeIn();
 	}
 
@@ -38,12 +38,21 @@ define(['globals'], globals => {
 		if (showAllMaps) {
 			showAllMaps = false;
 			showStage = true;
-			setMapsText(mapsTextSpan, globals.maps.map(map => map.map).join(' · '));
+			setMapsText(mapsTextSpan, globals.maps.map(map => {
+				if (map.current && globals.maps.length !== 1) {
+					return map.map.italics();
+				}
+				return map.map;
+			}).join(' · '));
 		} else if (showStage) {
 			if (globals.stage !== '') {
 				setMapsText(mapsTextSpan, globals.stage);
 			}
 			showStage = false;
+			if (globals.maps.length === 1) { // don't show map scores when there's a single map
+				reset();
+				return;
+			}
 		} else { // show a single map
 			const filtered = globals.maps.filter(m => m.show);
 			if (filtered.length === 0) {
