@@ -3,17 +3,17 @@
 
 	const inputs = document.getElementsByClassName('role');
 	const nodecg = window.nodecg;
-	const roles = nodecg.Replicant('roles', 'tflive-layouts');
+	const roles = new nodecg.Replicant('roles', 'tflive-layouts');
 
-	for (let i in inputs) {
+	for (const i in inputs) {
 		const id = inputs[i].id;
 		const name_input = document.getElementById(id);
 		if (!name_input) {
 			continue;
 		}
 
-		const twitter_input = document.getElementById(id+'_twitter');
-		const mumble_input = document.getElementById(id+'_mumble');
+		const twitter_input = document.getElementById(`${id}_twitter`);
+		const mumble_input = document.getElementById(`${id}_mumble`);
 
 		const callback = () => {
 			let name = name_input.value || '';
