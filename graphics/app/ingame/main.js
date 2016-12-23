@@ -94,9 +94,9 @@
 			}
 		});
 
-		const topTimerText = new nodecg.Replicant('custom-timer-text', 'tflive-layouts', {defaultValue: {enabled: false}});
+		const matchStatus = new nodecg.Replicant('match-status', 'tflive-layouts', {defaultValue: {enabled: false}});
 
-		topTimerText.on('change', value => {
+		matchStatus.on('change', value => {
 			if (value.enabled) {
 				if (value.hideMaps) {
 					$('#maps').fadeOut();

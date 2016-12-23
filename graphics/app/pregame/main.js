@@ -102,8 +102,8 @@
 		const nowPlaying = new nodecg.Replicant('now_playing', 'tflive-layouts');
 		nowPlaying.on('change', changeSong);
 
-		const topTimerText = new nodecg.Replicant('custom-timer-text', 'tflive-layouts');
-		topTimerText.on('change', value => {
+		const matchStatus = new nodecg.Replicant('match-status', 'tflive-layouts');
+		matchStatus.on('change', value => {
 			if (value.matchEnded) {
 				$('#maps').fadeOut(() => {
 					$('#upper').slideUp();

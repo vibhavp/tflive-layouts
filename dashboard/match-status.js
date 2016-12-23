@@ -1,6 +1,6 @@
 (function () {
 	const nodecg = window.nodecg;
-	const customText = new nodecg.Replicant('custom-timer-text', 'tflive-layouts', {defaultValue: {enabled: false}});
+	const customText = new nodecg.Replicant('match-status', 'tflive-layouts', {defaultValue: {enabled: false}});
 	const paused = nodecg.Replicant('paused', 'tflive-layouts', {defaultValue: false});
 	const textItem = $('#custom-text');
 
