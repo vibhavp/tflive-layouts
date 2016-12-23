@@ -22,10 +22,13 @@ body {
 	color: white;
 }
 
-#tflive-logo {
-	height: 200px;
-	display: absolute;
-	top: 200px;
+img#tflive-logo {
+	position: absolute;
+	top: -46px;
+	left: -400px;
+	/* right: 5px; */
+	/* width: 10px; */
+	transform: scale(0.19);
 }
 
 #vs {
