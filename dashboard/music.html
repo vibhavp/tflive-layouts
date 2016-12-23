@@ -4,10 +4,17 @@
 		<meta charset="UTF-8">
 		<link rel="import" href="components/nodecg-replicant-input/nodecg-replicant-input.html">
 		<link rel="import" href="components/paper-toggle-button/paper-toggle-button.html">
+		<link rel="import" href="components/iron-flex-layout/classes/iron-flex-layout.html">
+		<link rel="import" href="components/paper-input/paper-input.html">
+		<link rel="import" href="components/paper-button/paper-button.html">
 	</head>
 	<body>
 		<nodecg-replicant-input label="Now Playing" replicant-name="now_playing"></nodecg-replicant-input>
-		<paper-toggle-button id="lastfm">Use LastFM</paper-toggle-button>
+		<div class="layout horizontal">
+			<paper-input label="LastFM Username" id="lastfm-uname"></paper-input>
+			<paper-toggle-button id="lastfm-use">Use LastFM</paper-toggle-button>
+			<paper-button id="lastfm-fetch" raised>Fetch from LastFM</paper-button>
+		</div>
 		<paper-toggle-button id="show">Show Now Playing</paper-toggle-button>
 		<script src="music.js"></script>
 	</body>

@@ -1,28 +1,59 @@
 const LastFM = require('lastfm-listener');
 
 module.exports = function (nodecg) {
-	const now_playing = new nodecg.Replicant('now_playing', 'tflive-layouts', {defaultValue: ''});
-	const use_lastfm = new nodecg.Replicant('use_lastfm', 'tflive-layouts', {defaultValue: false});
+	const nowPlaying = new nodecg.Replicant('now_playing', 'tflive-layouts', {defaultValue: ''});
+	const lastFMConfig = new nodecg.Replicant('lastfm-config', 'tflive-layouts');
 	let client;
 
 	if (!nodecg.bundleConfig) {
 		nodecg.log.error('no config found. LastFM disabled.');
-	} else if (!nodecg.bundleConfig.last_fm) {
+	} else if (!nodecg.bundleConfig.lastfm) {
 		nodecg.log.error('no LastFM config found. LastFM disabled.');
-	} else {
+	} else if (lastFMConfig.username && lastFMConfig.username.trim() !== '') {
 		client = new LastFM({
 			api_key: nodecg.bundleConfig.lastfm.api_key,
-			username: nodecg.bundleConfig.lastfm.username
+			username: lastFMConfig.username
 		});
+		client.start();
 	}
-	if (client && !use_lastfm) {
-		client.getLatestSong(song => {
-			if (song.nowplaying) {
-				now_playing.value = song.artist + ': ' + song.name;
-			}
-		});
-		client.on('song', song => {
-			now_playing.value = song.artist + ': ' + song.name;
-		});
+
+	function startClient(config) {
+		if (client && config.enabled) {
+			client.start();
+			nodecg.log.info(`Started listening for user ${config.username}`);
+			client.getLatestSong(song => {
+				if (song.nowplaying) {
+					nowPlaying.value = song.artist['#text'] + ': ' + song.name;
+				}
+			});
+			client.on('song', song => {
+				nowPlaying.value = song.artist['#text'] + ': ' + song.name;
+			});
+		}
 	}
+
+	startClient(lastFMConfig.value);
+	lastFMConfig.on('change', conf => {
+		if (client) {
+			client.stop();
+		}
+		if (conf.username.trim() === '') {
+			return;
+		}
+		client = new LastFM({
+			api_key: nodecg.bundleConfig.lastfm.api_key,
+			username: conf.username
+		});
+		startClient(lastFMConfig.value);
+	});
+
+	nodecg.listenFor('lastfm_fetch', () => {
+		if (client) {
+			client.getLatestSong(song => {
+				if (song.nowplaying) {
+					nowPlaying.value = song.artist['#text'] + ': ' + song.name;
+				}
+			});
+		}
+	});
 };
