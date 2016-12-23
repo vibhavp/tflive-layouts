@@ -7,7 +7,6 @@ module.exports = function (nodecg) {
 	const mumblePort = new nodecg.Replicant('mumble_port', 'tflive-layouts');
 	const mumblePwd = new nodecg.Replicant('mumble_pwd', 'tflive-layouts');
 	const mumbleBotName = new nodecg.Replicant('mumble_bot_name', 'tflive-layouts');
-	const mumbleChannel = new nodecg.Replicant('mumble_channel', 'tflive-layouts');
 	const mumbleConnected = new nodecg.Replicant('mumble_connected', 'tflive-layouts', {persistent: false, defaultValue: false});
 
 	const mumblePlayerList = new nodecg.Replicant('mumble_player_list', 'tflive-layouts', {persistent: false});
@@ -66,15 +65,6 @@ module.exports = function (nodecg) {
 			connection.on('ready', () => {
 				makePlayerList();
 				mumbleConnected.value = true;
-
-				if (mumbleChannel.value && mumbleChannel.value.trim() !== '') {
-					const channel = connection.channelByName(mumbleChannel.value);
-					if (channel) {
-						channel.join();
-					} else {
-						nodecg.log.error('could not join channel ' + mumbleChannel.value);
-					}
-				}
 			});
 
 			connection.on('user-connect', (user) => {
