@@ -4,11 +4,14 @@ module.exports = function (nodecg) {
 	const nowPlaying = new nodecg.Replicant('now_playing', 'tflive-layouts', {defaultValue: ''});
 	const lastFMConfig = new nodecg.Replicant('lastfm-config', 'tflive-layouts');
 	let client;
+	let hasConfig = true;
 
 	if (!nodecg.bundleConfig) {
 		nodecg.log.error('no config found. LastFM disabled.');
+		hasConfig = false;
 	} else if (!nodecg.bundleConfig.lastfm) {
 		nodecg.log.error('no LastFM config found. LastFM disabled.');
+		hasConfig = false;
 	} else if (lastFMConfig.username && lastFMConfig.username.trim() !== '') {
 		client = new LastFM({
 			api_key: nodecg.bundleConfig.lastfm.api_key,
@@ -37,7 +40,8 @@ module.exports = function (nodecg) {
 		if (client) {
 			client.stop();
 		}
-		if (conf.username.trim() === '') {
+
+		if (conf.username.trim() === '' || !hasConfig) {
 			return;
 		}
 		client = new LastFM({
