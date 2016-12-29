@@ -47,7 +47,6 @@ module.exports = function (nodecg) {
 		for (const role in allRoles) {
 			const data = allRoles[role];
 			getImage(data.twitter_id, img => {
-				console.log(img);
 				allRoles[role] = {name: data.name, twitter_id: data.twitter_id, twitter_img: img};
 			});
 		}
