@@ -2,8 +2,8 @@ const Twitter = require('twitter');
 
 module.exports = function (nodecg) {
 	const roles = new nodecg.Replicant('roles', 'tflive-layouts', {defaultValue: {
-		'caster1': {}, 'caster2': {}, 'analyst1': {},
-		'analyst2': {}, 'camera': {}, 'production': {}}});
+		caster1: {}, caster2: {}, analyst1: {},
+		analyst2: {}, camera: {}, production: {}}});
 
 	let client;
 	if (!nodecg.bundleConfig) {

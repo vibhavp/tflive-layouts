@@ -67,18 +67,18 @@ module.exports = function (nodecg) {
 				mumbleConnected.value = true;
 			});
 
-			connection.on('user-connect', (user) => {
+			connection.on('user-connect', user => {
 				const listIndex = userList.indexOf(user.name);
 				if (user.name !== mumbleBotName.value && !isRole(user.name) && mumbleFilteredNames.value.indexOf(user.name) === -1) {
 					userList.push(user.name);
-				} else if (listIndex !== -1){
+				} else if (listIndex !== -1) {
 					userList.splice(listIndex, 1);
 				}
 
 				mumblePlayerList.value = userList;
 			});
 
-			connection.on('user-disconnect', (user) => {
+			connection.on('user-disconnect', user => {
 				const listIndex = userList.indexOf(user.name);
 
 				if (listIndex !== -1) {
@@ -99,7 +99,7 @@ module.exports = function (nodecg) {
 	}
 
 	nodecg.listenFor('mumble_disconnect', () => {
-		if (currConnection){
+		if (currConnection) {
 			currConnection.disconnect();
 		}
 		mumbleConnected.value = false;
@@ -107,8 +107,7 @@ module.exports = function (nodecg) {
 
 	try {
 		nodecg.listenFor('mumble_connect', connectMumble);
-	}
-	catch (e) {
+	} catch (e) {
 		nodecg.log.error('Error with mumble: ' + e);
 	}
 };
