@@ -12,7 +12,7 @@
 		}, 5000);
 		maps.setMaps($('#text', '#maps'));
 
-		const roles = new window.nodecg.Replicant('roles', 'tflive-layouts');
+		const roles = new nodecg.Replicant('roles', 'tflive-layouts');
 
 		roles.on('change', values => {
 			for (const role in values) {
@@ -106,13 +106,14 @@
 		matchStatus.on('change', value => {
 			if (value.matchEnded) {
 				$('#maps').fadeOut(() => {
+					$('#tflive-logo').hide();
 					$('#upper').slideUp();
 					$('#lower').slideUp();
 				});
 			} else {
 				$('#maps').show();
-				$('#upper').show();
-				$('#lower').show();
+				$('#upper').slideDown(() => $('#tflive-logo').show());
+				$('#lower').slideDown();
 			}
 		});
 
